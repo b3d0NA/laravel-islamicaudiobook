@@ -8,7 +8,7 @@
         <div class="flex flex-wrap items-center justify-center space-x-8 space-y-8 books">
 
             @forelse ($this->rawBooks as $book)
-            <div wire:loading.remove
+            <div
                 class="rounded-2xl book w-[230px] border border-gray-200 overflow-hidden hover:shadow-md transition ease-in-out min-h-[480px]">
                 <div class="rounded-tr-2xl rounded-br-2xl min-h-[300px] w-[230px] overflow-hidden book-image">
                     <img class="object-contain w-full transition ease-in-out cursor-pointer hover:scale-105 aspect-auto rounded-tr-2xl rounded-br-2xl"
@@ -19,7 +19,7 @@
                     <h5 class="mb-3 italic text-gray-400 normal-case text-md font-extralight">by {{$book->author}}</h5>
                     @auth
                     @if (auth()->user()->group_status != 1)
-                    <p class="my-3 py-3 normal-case text-xs font-light italic px-2">
+                    <p class="px-2 py-3 my-3 text-xs italic font-light normal-case">
                         {{config('app.not_activated_group')}}</p>
                     @else
                     <a wire:click="read({{$book->id}})"
@@ -42,38 +42,32 @@
             @if ($hasMorePages)
             <div x-data="{
                 observe () {
-                    let observer = new IntersectionObserver((entries) => {
-                        entries.forEach(entry => {
-                            if (entry.isIntersecting) {
-                                window.Livewire.emit('loadMore')
-                            }
-                        })
-                    }, {
-                        root: null
-                    })
-                    
-                    observer.observe(this.$el)
+                    window.onscroll = function (ev) {
+                        if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+                            window.livewire.emit('loadMore');
+                        }
+                    };
                 }
             }" x-init="observe">
             </div>
             @endif
             @empty
-            <div class="w-full bg-gray-50 flex justify-center items-center h-28">
-                <h2 class="text-xl text-gray-600 font-medium">In Shaa Allaah! Book will be added.</h2>
+            <div class="flex items-center justify-center w-full bg-gray-50 h-28">
+                <h2 class="text-xl font-medium text-gray-600">In Shaa Allaah! Book will be added.</h2>
             </div>
             @endforelse
 
-            @for ($i=1; $i<=5; $i++) <div wire:loading
+            @for ($i=1; $i<=3; $i++) <div wire:loading
                 class="rounded-2xl book w-[230px] border border-gray-200 overflow-hidden hover:shadow-md transition ease-in-out max-h-[450px]">
                 <div class="rounded-tr-2xl rounded-br-2xl max-h-[300px] w-[230px] overflow-hidden book-image p-1">
                     <div
-                        class="animate-pulse bg-gray-100 object-contain w-full h-52 transition ease-in-out cursor-pointer rounded-2xl">
+                        class="object-contain w-full transition ease-in-out bg-gray-100 cursor-pointer animate-pulse h-52 rounded-2xl">
                     </div>
                 </div>
                 <div class="mt-4 text-center book-info">
-                    <div class="bg-gray-100 animate-pulse w-40 h-6 rounded-xl mx-auto"></div>
-                    <div class="bg-gray-100 mt-2 animate-pulse w-32 h-5 rounded-xl mx-auto"></div>
-                    <div class="bg-gray-100 my-4 animate-pulse w-28 h-7 rounded-xl mx-auto"></div>
+                    <div class="w-40 h-6 mx-auto bg-gray-100 animate-pulse rounded-xl"></div>
+                    <div class="w-32 h-5 mx-auto mt-2 bg-gray-100 animate-pulse rounded-xl"></div>
+                    <div class="mx-auto my-4 bg-gray-100 animate-pulse w-28 h-7 rounded-xl"></div>
                 </div>
         </div>
         @endfor
