@@ -9,6 +9,8 @@
     @include('admin.index.generalReport')
     <!-- End General Report -->
 </div>
+<livewire:inactive-users />
+<livewire:toggle-user-group-status />
 <!-- end content -->
 @endsection
 

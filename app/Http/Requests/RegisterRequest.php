@@ -28,7 +28,7 @@ class RegisterRequest extends FormRequest
             "email" => "required|unique:users,email|email",
             "password" => "required",
             "mobile" => "required|numeric|unique:users,mobile",
-            "fb_link" => "string",
+            "fb_link" => "nullable|string",
             "gender" => "required|integer",
         ];
     }
