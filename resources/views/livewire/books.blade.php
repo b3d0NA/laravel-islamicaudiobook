@@ -6,7 +6,19 @@
     </div>
     <div class="p-5 mt-5 bg-white rounded-lg books-section">
         <div class="flex flex-wrap items-center justify-center space-x-8 space-y-8 books">
-
+        <div wire:loading wire:target="search"
+                class="rounded-2xl book w-[230px] border border-gray-200 overflow-hidden hover:shadow-md transition ease-in-out max-h-[450px]">
+                <div class="rounded-tr-2xl rounded-br-2xl max-h-[300px] w-[230px] overflow-hidden book-image p-1">
+                    <div
+                        class="object-contain w-full transition ease-in-out bg-gray-100 cursor-pointer animate-pulse h-52 rounded-2xl">
+                    </div>
+                </div>
+                <div class="mt-4 text-center book-info">
+                    <div class="w-40 h-6 mx-auto bg-gray-100 animate-pulse rounded-xl"></div>
+                    <div class="w-32 h-5 mx-auto mt-2 bg-gray-100 animate-pulse rounded-xl"></div>
+                    <div class="mx-auto my-4 bg-gray-100 animate-pulse w-28 h-7 rounded-xl"></div>
+                </div>
+        </div>
             @forelse ($this->rawBooks as $book)
             <div
                 class="rounded-2xl book w-[230px] border border-gray-200 overflow-hidden hover:shadow-md transition ease-in-out min-h-[480px]">
