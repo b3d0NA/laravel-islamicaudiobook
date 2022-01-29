@@ -1,0 +1,8 @@
+.card {
+  @apply rounded bg-white border border-gray-300 {} }
+  .card .card-header {
+    @apply border-b p-6 {} }
+  .card .card-body {
+    @apply p-6 {} }
+  .card .card-footer {
+    @apply border-t p-6 {} }
