@@ -48,7 +48,7 @@
                     </td>
                     <td class="mb-4 text-sm font-normal p-2 tracking-wider border-r border-gray-200 text-center">
                         <a target="_blank" class="" href="{{$book->cover_link}}">
-                            <img class="h-32 m-auto filter hover:saturate-200 hover:drop-shadow-xl"
+                            <img class="aspect-auto max-h-[150px] max-w-[150px] m-auto filter hover:saturate-200 hover:drop-shadow-xl"
                                 src="{{$book->cover_link}}" alt="{{$book->name}}">
 
                         </a>

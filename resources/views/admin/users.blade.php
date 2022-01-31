@@ -4,9 +4,7 @@
 
 @section("content")
 <div class="card">
-
     <livewire:users />
-
 </div>
 
 <livewire:user-edit />

@@ -15,7 +15,7 @@
           </div>
           <!-- end sidebar toggle -->
 
-          <p class="mb-4 text-xs tracking-wider text-gray-600 uppercase">homes</p>
+          <p class="mb-4 text-xs tracking-wider text-gray-600 uppercase">home</p>
 
           <!-- link -->
           <a href="{{route('admin.dashboard')}}"
