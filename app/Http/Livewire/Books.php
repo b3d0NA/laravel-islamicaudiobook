@@ -3,8 +3,6 @@
 namespace App\Http\Livewire;
 
 use App\Models\Book;
-use Illuminate\Database\Eloquent\Collection;
-use Illuminate\Queue\Listener;
 use Livewire\Component;
 use Livewire\WithPagination;
 
