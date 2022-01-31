@@ -6,7 +6,7 @@
     </div>
     <div class="p-5 mt-5 bg-white rounded-lg books-section">
         <div class="flex flex-wrap items-center justify-center space-x-8 space-y-8 books">
-        <div wire:loading wire:target="search"
+            <div wire:loading wire:target="search"
                 class="rounded-2xl book w-[230px] border border-gray-200 overflow-hidden hover:shadow-md transition ease-in-out max-h-[450px]">
                 <div class="rounded-tr-2xl rounded-br-2xl max-h-[300px] w-[230px] overflow-hidden book-image p-1">
                     <div
@@ -18,13 +18,24 @@
                     <div class="w-32 h-5 mx-auto mt-2 bg-gray-100 animate-pulse rounded-xl"></div>
                     <div class="mx-auto my-4 bg-gray-100 animate-pulse w-28 h-7 rounded-xl"></div>
                 </div>
-        </div>
+            </div>
             @forelse ($this->rawBooks as $book)
             <div
                 class="rounded-2xl book w-[230px] border border-gray-200 overflow-hidden hover:shadow-md transition ease-in-out min-h-[480px]">
                 <div class="rounded-tr-2xl rounded-br-2xl min-h-[300px] w-[230px] overflow-hidden book-image">
                     <img class="object-contain w-full transition ease-in-out cursor-pointer hover:scale-105 aspect-auto rounded-tr-2xl rounded-br-2xl"
                         src="{{$book->cover_link}}" alt="{{$book->name}}">
+                    <div class="book-image-overflow">
+                        <h2 class="text-md p-1 px-4 text-white rounded-lg bg-gradient-to-r from-amber-300 to-amber-500">
+                            Publication:
+                            {{$book->publication}}
+                        </h2>
+                        <h2 class="text-md p-1 px-4 text-white rounded-lg bg-gradient-to-r from-red-300 to-red-500">
+                            Page: {{$book->page_number}}</h2>
+                        <h2 class="text-md p-1 px-4 text-white rounded-lg bg-gradient-to-r from-teal-300 to-teal-500">
+                            Total Reads: {{\App\Http\Helpers\NumberFormat::readable($book->read)}}</h2>
+
+                    </div>
                 </div>
                 <div class="mt-2 text-center book-info">
                     <h2 class="text-xl font-bold text-gray-700">{{$book->name}}</h2>

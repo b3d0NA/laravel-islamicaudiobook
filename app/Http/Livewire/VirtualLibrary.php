@@ -15,7 +15,8 @@ class VirtualLibrary extends Component
     public $search;
     public function getBooksProperty(){
         return Book::when($this->search >= 2 , function ($query){
-                        $query->orWhere("name", 'LIKE', '%' . $this->search . '%');
+                        $this->resetPage();
+                        $query->Where("name", 'LIKE', '%' . $this->search . '%');
                         $query->orWhere("author", 'LIKE', '%' . $this->search . '%');
                         $query->orWhere("publication", 'LIKE', '%' . $this->search . '%');
                         return $query;

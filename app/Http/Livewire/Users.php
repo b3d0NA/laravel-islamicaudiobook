@@ -20,18 +20,22 @@ class Users extends Component
 
     public function getUsersProperty(){
         return User::when($this->search >= 2 , function ($query){
+                        $this->resetPage();
                         $query->orWhere("name", 'LIKE', '%' . $this->search . '%');
                         $query->orWhere("email", 'LIKE', '%' . $this->search . '%');
                         $query->orWhere("mobile", 'LIKE', '%' . $this->search . '%');
                         return $query;
                     })
                     ->when($this->gender != "", function ($query){
+                        $this->resetPage();
                         return $query->where("gender", $this->gender);
                     })
                     ->when($this->group_status != "", function ($query){
+                        $this->resetPage();
                         return $query->where("group_status", $this->group_status);
                     })
                     ->when($this->paid_status != "", function ($query){
+                        $this->resetPage();
                         return $query->where("paid_status", $this->paid_status);
                     })
                     ->latest()

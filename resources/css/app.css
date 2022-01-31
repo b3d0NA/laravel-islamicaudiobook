@@ -74,5 +74,17 @@
     .slider.round:before {
         border-radius: 50%;
     }
+    .book-image {
+        @apply relative;
+    }
+    .book-image-overflow {
+        @apply absolute top-0 flex flex-col items-center justify-center w-full h-full space-y-3 bg-opacity-50 bg-gradient-to-b from-sky-100/50 to-teal-500/50;
+        padding: 20px;
+        transition: 0.3s;
+        transform: translateY(100%);
+    }
+    .book-image:hover .book-image-overflow {
+        transform: translateY(0px);
+    }
 }
 @tailwind utilities;
