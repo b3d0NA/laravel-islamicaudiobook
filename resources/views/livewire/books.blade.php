@@ -5,7 +5,7 @@
             class="p-2 rounded-lg w-80 md:w-full focus:ring-2 focus:ring-blue-400 focus:outline-none focus:ring-offset-4">
     </div>
     <div class="p-5 mt-5 bg-white rounded-lg books-section">
-        <div class="flex flex-wrap items-center justify-center space-x-8 space-y-8 books">
+        <div class="flex flex-wrap sm:flex-col sm:space-x-0 items-center justify-center space-x-8 space-y-8 books">
             <div wire:loading wire:target="search"
                 class="rounded-2xl book w-[230px] border border-gray-200 overflow-hidden hover:shadow-md transition ease-in-out max-h-[450px]">
                 <div class="rounded-tr-2xl rounded-br-2xl max-h-[300px] w-[230px] overflow-hidden book-image p-1">
@@ -19,8 +19,8 @@
                     <div class="mx-auto my-4 bg-gray-100 animate-pulse w-28 h-7 rounded-xl"></div>
                 </div>
             </div>
-            @forelse ($this->rawBooks as $book)
-            <div
+            @forelse ($this->books as $book)
+            <div wire:loading.remove
                 class="rounded-2xl book w-[230px] border border-gray-200 overflow-hidden hover:shadow-md transition ease-in-out min-h-[480px]">
                 <div class="rounded-tr-2xl rounded-br-2xl min-h-[300px] w-[230px] overflow-hidden book-image">
                     <img class="object-contain w-full transition ease-in-out cursor-pointer hover:scale-105 aspect-auto rounded-tr-2xl rounded-br-2xl"
@@ -62,18 +62,7 @@
                     @endguest
                 </div>
             </div>
-            @if ($hasMorePages)
-            <div x-data="{
-                observe () {
-                    window.onscroll = function (ev) {
-                        if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
-                            window.livewire.emit('loadMore');
-                        }
-                    };
-                }
-            }" x-init="observe">
-            </div>
-            @endif
+
             @empty
             <div class="flex items-center justify-center w-full bg-gray-50 h-28">
                 <h2 class="text-xl font-medium text-gray-600">In Shaa Allaah! Book will be added.</h2>
@@ -94,6 +83,13 @@
                 </div>
         </div>
         @endfor
+
     </div>
+    <div class="my-4">{{$this->books->links('vendor.livewire.tailwind-custom')}}</div>
     </div>
 </section>
+
+@push("custom-scripts")
+
+
+@endpush

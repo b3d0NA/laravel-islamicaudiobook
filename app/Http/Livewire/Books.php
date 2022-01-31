@@ -6,20 +6,16 @@ use App\Models\Book;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Queue\Listener;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class Books extends Component
 {
-    public $books;
+    use WithPagination;
     public $search;
-    public $isLoading = true;
+    public $perPage = 20;
 
-    public $nextCursor = null;
-    public $hasMorePages = false;
-    public $perPage = 10;
-
-    protected $listeners = ["loadMore"];
     
-    public function getRawBooksProperty(){
+    public function getBooksProperty(){
         return Book::when($this->search >= 2 , function ($query){
             $query->orWhere("name", 'LIKE', '%' . $this->search . '%');
             $query->orWhere("author", 'LIKE', '%' . $this->search . '%');
@@ -27,24 +23,7 @@ class Books extends Component
             return $query;
         })
         ->latest()
-        ->cursorPaginate($this->perPage);
-    }
-
-    public function mount()
-    {
-        $this->books = $this->rawBooks->items();
-        $this->isLoading = false;
-        if ($this->hasMorePages = $this->rawBooks->hasMorePages()) {
-            $this->nextCursor = $this->rawBooks->nextCursor()->encode();
-        }
-    }
-
-    public function loadMore(){
-        $this->isLoading = true;
-        if($this->hasMorePages){
-            $this->perPage = $this->perPage+5;
-        }
-        $this->isLoading = false;
+        ->paginate($this->perPage);
     }
 
     public function read(Book $book){
