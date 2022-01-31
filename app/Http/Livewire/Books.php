@@ -17,6 +17,7 @@ class Books extends Component
     
     public function getBooksProperty(){
         return Book::when($this->search >= 2 , function ($query){
+            $this->resetPage();
             $query->orWhere("name", 'LIKE', '%' . $this->search . '%');
             $query->orWhere("author", 'LIKE', '%' . $this->search . '%');
             $query->orWhere("publication", 'LIKE', '%' . $this->search . '%');
