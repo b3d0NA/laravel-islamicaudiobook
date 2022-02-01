@@ -1,5 +1,5 @@
 <div class="py-3 my-3 px-3">
-    <div class="card-body" x-init>
+    <div class="card-body overflow-x-scroll" x-init>
         <h2 class="font-bold text-lg mb-10 text-center">Virtual Library</h2>
         <div class="feature flex space-x-4 space-y-2 my-3">
             <input wire:model.debounce.500ms="search" type="search"
@@ -8,7 +8,7 @@
             <button x-on:click="$dispatch('open-add-book-modal')" class="btn my-3">Add Book</button>
         </div>
         <!-- start a table -->
-        <table class="table-auto w-full border rounded-xl">
+        <table class="table-auto w-full border rounded-xl overflow-x-scroll">
 
             <!-- table head -->
             <thead class="text-center bg-gray-50 rounded-xl">

@@ -3,7 +3,7 @@
 @section("title", "Virtual Library - ".config("app.name"))
 
 @section("content")
-<div class="card">
+<div class="card md:!w-full xl:w-[70vw]">
 
     <livewire:virtual-library />
 

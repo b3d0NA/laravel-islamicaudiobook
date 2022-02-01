@@ -21,7 +21,7 @@ class UserEdit extends Component
 
     protected $rules = [
         "name" => "required",
-        "email" => "required",
+        "email" => "required|email|ends_with:@gmail.com",
         "mobile" => "required|numeric",
         "gender" => "required",
     ];
