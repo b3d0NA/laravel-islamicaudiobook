@@ -3,7 +3,7 @@
 @section("title", "Users - ".config("app.name"))
 
 @section("content")
-<div class="card md:!w-full xl:w-[70vw]">
+<div class="card md:!w-full xl:w-[70vw] w-[75vw]">
     <livewire:users />
 </div>
 
