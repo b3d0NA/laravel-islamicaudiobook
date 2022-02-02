@@ -30,7 +30,7 @@
                             @if ($user->group_status)
                             Active
                             @else
-                            Un Active
+                            Inactive
                             @endif
                         </span>
                     </h3>
@@ -43,7 +43,7 @@
                             @if ($user->paid_status)
                             Active
                             @else
-                            Un Active
+                            Inactive
                             @endif
                         </span>
                     </h3>

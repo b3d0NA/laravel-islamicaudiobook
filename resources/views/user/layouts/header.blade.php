@@ -27,15 +27,27 @@
     </div>
     @endauth
     @guest
-    <div class="flex flex-col items-center navigation justify-self-end">
-        <a href="{{route('user.login.index')}}" title="Logout"
-            class="flex p-2 px-4 space-x-3 text-white transition duration-300 bg-gradient-to-l hover:from-teal-500 hover:to-green-400 from-green-300 to-teal-400 rounded-xl">
-            <span>Login</span>
-            <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                    d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
-            </svg>
-        </a>
+    <div class="log-reg flex space-x-4">
+        <div class="flex flex-col items-center navigation justify-self-end">
+            <a href="{{route('user.login.index')}}" title="Logout"
+                class="flex p-2 px-4 space-x-3 text-white transition duration-300 bg-gradient-to-l hover:from-blue-500 hover:to-indigo-400 from-blue-300 to-indigo-400 rounded-xl">
+                <span>Login</span>
+                <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+                </svg>
+            </a>
+        </div>
+        <div class="flex flex-col items-center navigation justify-self-end">
+            <a href="{{route('user.login.index')}}" title="Logout"
+                class="flex p-2 px-4 space-x-3 text-white transition duration-300 bg-gradient-to-l hover:from-teal-500 hover:to-green-400 from-green-300 to-teal-400 rounded-xl">
+                <span>Register</span>
+                <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+                </svg>
+            </a>
+        </div>
     </div>
     @endguest
 </section>

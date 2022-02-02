@@ -4,10 +4,10 @@
 
     <!-- logo -->
     <div class="flex flex-row items-center flex-none w-56">
-        <div class="flex flex-col justify-center items-center">
+        <a href="{{route('user.home')}}" target="_blank" class="flex flex-col justify-center items-center">
             <img src="{{asset('images/logo.png')}}" class="flex-none w-10">
             <strong class="flex-1 ml-1 capitalize">{{config("app.name")}}</strong>
-        </div>
+        </a>
 
         <button x-init @click="$dispatch('open-sidebar')" id="sliderBtn"
             class="flex-none hidden text-right text-gray-900 md:block">

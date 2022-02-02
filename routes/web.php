@@ -5,6 +5,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Admin\SettingsController;
 use App\Http\Controllers\Admin\VirtualLibraryController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
@@ -30,7 +31,8 @@ Route::middleware(['admin.auth'])->prefix("admin")->group(function () {
     Route::view('change-password', 'admin.change-password')->name("admin.changepwd.index");
     Route::post('change-password', [AdminAuthController::class, 'changePassword'])->name("admin.changepwd");
     Route::get('vlib', [VirtualLibraryController::class, "index"])->name("admin.vlib.index");
-    Route::view('users', "admin.users")->name("admin.users.index");
+    Route::view('users', "admin.users.index")->name("admin.users.index");
+    Route::get('sendmail', [UserController::class, "index"])->name("admin.users.sendmail.index");
     Route::get('settings', [SettingsController::class, "index"])->name("admin.settings.index");
     Route::post('settings', [SettingsController::class, "update"])->name("admin.settings.update");
     Route::post('logout', [AdminAuthController::class, "logout"])->name("admin.logout");

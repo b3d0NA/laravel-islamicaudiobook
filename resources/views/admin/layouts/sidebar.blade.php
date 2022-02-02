@@ -42,6 +42,13 @@
               users
           </a>
           <!-- end link -->
+          <!-- link -->
+          <a href="{{route('admin.users.sendmail.index')}}"
+              class="mb-3 text-sm font-medium capitalize transition duration-500 ease-in-out hover:text-blue-600">
+              <i class="mr-2 text-xs fas fa-envelope"></i>
+              send email to users
+          </a>
+          <!-- end link -->
 
           <!-- link -->
           <a href="{{route('admin.settings.index')}}"
