@@ -51,4 +51,12 @@ class User extends Authenticatable
     public function setPasswordAttribute($password){
         $this->attributes['password'] = bcrypt($password);
     }
+
+    public function messages(){
+        return $this->hasMany(AdminMessage::class, "user_id");
+    }
+
+    public function lastMessage(){
+        return $this->messages()->latest()->first();
+    } 
 }

@@ -32,4 +32,8 @@ class Admin extends Authenticatable
     public function setPasswordAttribute($password){
         $this->attributes['password'] = bcrypt($password);
     }
+
+    public function messages(){
+        return $this->where('is_admin', "1")->get();
+    }
 }

@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\VirtualLibraryController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\UserMessageController;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 
@@ -14,6 +15,8 @@ Route::get('/', [HomeController::class, "index"])->name("user.home");
 
 Route::middleware("auth")->group(function (){
     Route::get('edit/profile', [HomeController::class, "editProfileIndex"])->name("user.edit.index");
+    Route::get('messages', [UserMessageController::class, "index"])->name("user.messages.index");
+    Route::post('messages', [UserMessageController::class, "store"])->name("user.messages.store");
     Route::post('edit/profile', [HomeController::class, "editProfile"])->name("user.edit");
     Route::post('user/changepassword', [HomeController::class, "changePassword"])->name("user.changepwd");
     Route::post("logout", [AuthController::class, "logout"])->name("user.logout");
@@ -33,6 +36,9 @@ Route::middleware(['admin.auth'])->prefix("admin")->group(function () {
     Route::get('vlib', [VirtualLibraryController::class, "index"])->name("admin.vlib.index");
     Route::view('users', "admin.users.index")->name("admin.users.index");
     Route::get('sendmail', [UserController::class, "index"])->name("admin.users.sendmail.index");
+    Route::get('messages', [UserController::class, "messages"])->name("admin.users.messages.index");
+    Route::get('messages/{user:id}', [UserController::class, "messagesView"])->name("admin.users.messages.view");
+    Route::post('messages/{user:id}', [UserController::class, "storeMessage"])->name("admin.users.messages.store");
     Route::get('settings', [SettingsController::class, "index"])->name("admin.settings.index");
     Route::post('settings', [SettingsController::class, "update"])->name("admin.settings.update");
     Route::post('logout', [AdminAuthController::class, "logout"])->name("admin.logout");

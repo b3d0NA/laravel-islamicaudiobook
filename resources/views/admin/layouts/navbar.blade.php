@@ -28,7 +28,10 @@
         class="flex flex-row flex-wrap items-center justify-between flex-1 pl-3 animated md:hidden md:fixed md:top-0 md:w-full md:left-0 md:mt-24 md:border-t md:border-b md:border-gray-200 md:p-10 md:bg-white md:flex-col md:items-center">
         <!-- left -->
         <div class="text-gray-600 md:w-full md:flex md:flex-row md:justify-evenly  md:border-gray-200">
-
+            <a href="{{route('admin.users.messages.index')}}"
+                class="text-gray-500 menu-btn p-0 m-0 hover:text-gray-900 focus:text-gray-900 focus:outline-none transition-all ease-in-out duration-300">
+                <i class="fad fa-comment-alt text-2xl"></i>
+            </a>
         </div>
         <!-- end left -->
 
