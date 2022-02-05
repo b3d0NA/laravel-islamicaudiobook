@@ -4,7 +4,9 @@
 
 @section("content")
 @if (!$maintenance->value)
-<x-notices :active-notice='$active_notice' :inactive-notice='$inactive_notice' :paid-notice='$paid_notice'/>
+@auth
+<x-notices :active-notice='$active_notice' :inactive-notice='$inactive_notice' :paid-notice='$paid_notice' />
+@endauth
 <livewire:books />
 @else
 <div class="card">
