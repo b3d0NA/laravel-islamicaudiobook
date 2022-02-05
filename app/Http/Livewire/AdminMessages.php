@@ -17,6 +17,8 @@ class AdminMessages extends Component
         return AdminMessage::with(['user' => function ($q){
                         $q->when($this->search >= 2, function($query){
                             $query->where('name', 'LIKE', "%{$this->search}%");
+                            $query->orWhere('email', 'LIKE', "%{$this->search}%");
+                            $query->orWhere('number', 'LIKE', "%{$this->search}%");
                         });
                     }])
                     ->select('id','is_read', 'user_id', 'message', DB::raw('MAX(created_at) AS created_at'))
