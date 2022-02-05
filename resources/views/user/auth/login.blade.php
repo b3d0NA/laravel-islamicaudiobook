@@ -7,6 +7,7 @@
     <div class="mb-5 login-image">
         <img class="w-40" src="{{asset('images/logo.png')}}" alt="ISLAMIC AUDIOBOOK">
     </div>
+    @if (!$maintenance->value)
     <div class="p-5 bg-white login-form rounded-xl md:w-[320px] w-[400px]">
         <h2 class="mb-4 text-2xl font-semibold text-center text-gray-600">Login</h2>
         @foreach ($errors->all() as $error)
@@ -39,6 +40,14 @@
         <p class="mt-5 text-center normal-case">Don't have an account? Register <a
                 href="{{route('user.register.index')}}" class="text-blue-500 hover:underline">here</a></p>
     </div>
+    @else
+    <div class="px-4 mx-auto my-32 text-center maint h-28 sm:px-8">
+        <h2 class="flex items-center justify-center mb-8 space-x-4 text-3xl font-light text-center text-gray-700 sm:flex-col sm:space-y-6">
+            <i class="text-6xl fas fa-cog animate-spin"></i>
+            <span class="text-gray-500 normal-case">SubhanAllaah! Site is under maintenance right now.  You can not login</span>
+        </h2>
+    </div>
+    @endif
 </section>
 
 @endsection

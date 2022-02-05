@@ -20,8 +20,9 @@ class UserController extends Controller
 
     public function messagesView(User $user)
     {
-        $messages = AdminMessage::where("user_id", $user->id)
-                            ->get();
+        $messagesRaw = AdminMessage::where("user_id", $user->id);
+        $messagesRaw->update(["is_read" => 1]);
+        $messages = $messagesRaw->get();
         return view("admin.users.messages.view", compact("messages", "user"));
     }
 

@@ -36,4 +36,8 @@ class Admin extends Authenticatable
     public function messages(){
         return $this->where('is_admin', "1")->get();
     }
+
+    public function unreadMessagesCount(){
+        return AdminMessage::where('is_read', 0)->count();
+    }
 }

@@ -4,14 +4,15 @@
 
 @section("content")
 @if (!$maintenance->value)
+<x-notices :active-notice='$active_notice' :inactive-notice='$inactive_notice' :paid-notice='$paid_notice'/>
 <livewire:books />
 @else
 <div class="card">
-    <div class="card-body" x-init>
-        <div class="maint mx-auto text-center h-28 my-32">
-            <h2 class="text-3xl text-center justify-center text-gray-700 mb-8 flex space-x-4 items-center font-light">
-                <i class="fas fa-cog animate-spin text-6xl"></i>
-                <span class="normal-case text-gray-500">SubhanAllaah! Site is under maintenance right now.</span>
+    <div class="card-body">
+        <div class="mx-auto my-32 text-center maint h-28">
+            <h2 class="flex items-center justify-center mb-8 space-x-4 text-3xl font-light text-center text-gray-700">
+                <i class="text-6xl fas fa-cog animate-spin"></i>
+                <span class="text-gray-500 normal-case">SubhanAllaah! Site is under maintenance right now.</span>
             </h2>
         </div>
     </div>

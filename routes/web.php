@@ -1,5 +1,4 @@
 <?php
-
 use App\Http\Controllers\Admin\AdminAuthController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Admin\SettingsController;
@@ -12,7 +11,6 @@ use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, "index"])->name("user.home");
-
 Route::middleware("auth")->group(function (){
     Route::get('edit/profile', [HomeController::class, "editProfileIndex"])->name("user.edit.index");
     Route::get('messages', [UserMessageController::class, "index"])->name("user.messages.index");
@@ -50,5 +48,12 @@ Route::middleware(['admin.guest'])->prefix("admin")->group(function(){
 });
 
 Route::get("artisan", function (){
+    Artisan::call('migrate --seed');
     Artisan::call("cache:clear");
+    Artisan::call('optimize');
+    Artisan::call('route:cache');
+    Artisan::call('route:clear');
+    Artisan::call('view:clear');
+    Artisan::call('config:cache');
+    echo"Done Alhamdulillah!";
 });

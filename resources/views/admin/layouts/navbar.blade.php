@@ -1,24 +1,24 @@
 <!-- start navbar -->
 <div x-data="{isOpen: false}"
-    class="flex flex-row flex-wrap items-center p-6 bg-gradient-to-r from-blue-100 to-teal-50 border-b border-gray-300 md:fixed md:w-full md:top-0 md:z-20">
+    class="flex flex-row flex-wrap items-center p-6 border-b border-gray-300 bg-gradient-to-r from-blue-100 to-teal-50 md:fixed md:w-full md:top-0 md:z-20">
 
     <!-- logo -->
     <div class="flex flex-row items-center flex-none w-56">
-        <a href="{{route('user.home')}}" target="_blank" class="flex flex-col justify-center items-center">
+        <a href="{{route('user.home')}}" target="_blank" class="flex flex-col items-center justify-center">
             <img src="{{asset('images/logo.png')}}" class="flex-none w-10">
             <strong class="flex-1 ml-1 capitalize">{{config("app.name")}}</strong>
         </a>
 
         <button x-init @click="$dispatch('open-sidebar')" id="sliderBtn"
             class="flex-none hidden text-right text-gray-900 md:block">
-            <i class="fad fa-list-ul text-2xl"></i>
+            <i class="text-2xl fad fa-list-ul"></i>
         </button>
     </div>
     <!-- end logo -->
 
     <!-- navbar content toggle -->
     <button @click="$dispatch('nav-trigger')" id="navbarToggle" class="right-0 hidden mr-6 md:block md:fixed">
-        <i class="fad fa-chevron-double-down w-20 h-20"></i>
+        <i class="w-20 h-20 fad fa-chevron-double-down"></i>
     </button>
     <!-- end navbar content toggle -->
 
@@ -27,10 +27,15 @@
         id="navbar"
         class="flex flex-row flex-wrap items-center justify-between flex-1 pl-3 animated md:hidden md:fixed md:top-0 md:w-full md:left-0 md:mt-24 md:border-t md:border-b md:border-gray-200 md:p-10 md:bg-white md:flex-col md:items-center">
         <!-- left -->
-        <div class="text-gray-600 md:w-full md:flex md:flex-row md:justify-evenly  md:border-gray-200">
+        <div class="text-gray-600 md:w-full md:flex md:flex-row md:justify-evenly md:border-gray-200">
             <a href="{{route('admin.users.messages.index')}}"
-                class="text-gray-500 menu-btn p-0 m-0 hover:text-gray-900 focus:text-gray-900 focus:outline-none transition-all ease-in-out duration-300">
-                <i class="fad fa-comment-alt text-2xl"></i>
+                class="relative p-0 m-0 text-gray-500 transition-all duration-300 ease-in-out menu-btn hover:text-gray-900 focus:text-gray-900 focus:outline-none">
+                <i class="text-2xl fad fa-comment-alt"></i>
+                @if (auth("admin")->user()->unreadMessagesCount())
+                <span class="absolute -top-[20px] text-center -right-[10px] w-[25px] h-[25px] bg-red-500 rounded-full text-white text-md font-bold">
+                    {{auth("admin")->user()->unreadMessagesCount()}}
+                </span>
+                @endif
             </a>
         </div>
         <!-- end left -->
@@ -98,8 +103,7 @@
                     class="absolute right-0 z-20 w-40 py-2 mt-5 text-gray-500 bg-white rounded shadow-md menu md:mt-10 md:w-full animated faster"
                     x-cloak>
 
-                    <a href="{{route('admin.changepwd.index')}}" class="block px-4 py-2 text-sm font-medium tracking-wide capitalize
-                        transition-all duration-300 ease-in-out bg-white hover:bg-gray-200 hover:text-gray-900"><i
+                    <a href="{{route('admin.changepwd.index')}}" class="block px-4 py-2 text-sm font-medium tracking-wide capitalize transition-all duration-300 ease-in-out bg-white hover:bg-gray-200 hover:text-gray-900"><i
                             class="mr-1 text-xs fad fa-key"></i> change password</a>
 
                     <!-- end item -->
@@ -109,7 +113,7 @@
                     <form action="{{route('admin.logout')}}" class="block" method="post">
                         @csrf
                         <button type="submit"
-                            class="w-full block px-4 py-2 text-sm font-medium tracking-wide capitalize transition-all duration-300 ease-in-out bg-white hover:bg-gray-200 hover:text-gray-900"
+                            class="block w-full px-4 py-2 text-sm font-medium tracking-wide capitalize transition-all duration-300 ease-in-out bg-white hover:bg-gray-200 hover:text-gray-900"
                             href="#">
                             <i class="mr-1 text-xs fad fa-sign-out-alt"></i>
                             log out
