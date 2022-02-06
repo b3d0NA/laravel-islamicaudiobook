@@ -5,7 +5,7 @@
 
 <section class="flex flex-col items-center justify-center main-login h-[900px]">
     <div class="mb-5 login-image">
-        <img class="w-40" src="{{asset('images/logo.png')}}" alt="ISLAMIC AUDIOBOOK">
+        <h1 class="text-transparent logo-text bg-clip-text bg-gradient-to-br from-blue-400 to-teal-600">{{config('app.name')}}</h1>
     </div>
     @if (!$maintenance->value)
     <div class="p-5 bg-white login-form rounded-xl md:w-[320px] w-[400px]">

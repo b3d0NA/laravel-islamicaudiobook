@@ -1,6 +1,6 @@
 @extends("user.layouts.app")
 
-@section("title", "Home -- ".config("app.name"))
+@section("title", "Home - ".config("app.name"))
 
 @section("content")
 @if (!$maintenance->value)

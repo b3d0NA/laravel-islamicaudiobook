@@ -4,13 +4,13 @@
 
     <!-- logo -->
     <div class="flex flex-row items-center flex-none w-56">
-        <a href="{{route('user.home')}}" target="_blank" class="flex flex-col items-center justify-center">
-            <img src="{{asset('images/logo.png')}}" class="flex-none w-10">
-            <strong class="flex-1 ml-1 capitalize">{{config("app.name")}}</strong>
+        <a href="{{route('user.home')}}" target="_blank" class="flex items-center justify-center space-x-3">
+            <img src="{{asset('images/logo.png')}}" class="flex-none w-20">
+            <h1 class="text-4xl text-transparent logo-text bg-clip-text bg-gradient-to-br from-blue-400 to-teal-600 w-[200px]">{{config('app.name')}}</h1>
         </a>
 
         <button x-init @click="$dispatch('open-sidebar')" id="sliderBtn"
-            class="flex-none hidden text-right text-gray-900 md:block">
+            class="flex-none hidden ml-12 text-right text-gray-900 md:block">
             <i class="text-2xl fad fa-list-ul"></i>
         </button>
     </div>
@@ -25,9 +25,9 @@
     <!-- navbar content -->
     <div @nav-trigger.window="$el.classList.contains('md:hidden') ? $el.classList.remove('md:hidden') : $el.classList.add('md:hidden')"
         id="navbar"
-        class="flex flex-row flex-wrap items-center justify-between flex-1 pl-3 animated md:hidden md:fixed md:top-0 md:w-full md:left-0 md:mt-24 md:border-t md:border-b md:border-gray-200 md:p-10 md:bg-white md:flex-col md:items-center">
+        class="flex flex-row flex-wrap items-center justify-between flex-1 pl-3 animated md:hidden md:fixed md:top-0 md:w-full md:left-0 md:mt-32 md:border-t md:border-b md:border-gray-200 md:p-10 md:bg-white md:flex-col md:items-center">
         <!-- left -->
-        <div class="text-gray-600 md:w-full md:flex md:flex-row md:justify-evenly md:border-gray-200">
+        <div class="ml-12 text-gray-600 sm:ml-0 md:w-full md:flex md:flex-row md:justify-evenly md:border-gray-200">
             <a href="{{route('admin.users.messages.index')}}"
                 class="relative p-0 m-0 text-gray-500 transition-all duration-300 ease-in-out menu-btn hover:text-gray-900 focus:text-gray-900 focus:outline-none">
                 <i class="text-2xl fad fa-comment-alt"></i>

@@ -17,6 +17,10 @@
 @import url("./apply/_typography.css");
 
 @layer components {
+    @font-face {
+        font-family: "HasanMeghaloy";
+        src: url("../fonts/HasanMeghaloy.ttf");
+    }
     .report-card .card:hover {
         @apply border-white shadow-lg;
         transform: scale(1.01);
@@ -85,6 +89,13 @@
     }
     .book-image:hover .book-image-overflow {
         transform: translateY(0px);
+    }
+    .logo-text {
+        font-family: HasanMeghaloy;
+        font-size: 50px;
+        width: 300px;
+        text-align: center;
+        line-height: 50px;
     }
 }
 @tailwind utilities;

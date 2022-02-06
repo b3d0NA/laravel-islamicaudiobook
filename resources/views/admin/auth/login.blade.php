@@ -6,7 +6,7 @@
 <section class="flex flex-col items-center justify-center main-login h-[600px]">
     <div class="p-5 bg-white login-form rounded-xl md:w-[320px] w-[400px] flex flex-col items-center">
         <div class="mb-5 login-image">
-            <img class="w-40" src="{{asset('images/logo.png')}}" alt="ISLAMIC AUDIOBOOK">
+            <h1 class="text-transparent logo-text bg-clip-text bg-gradient-to-br from-blue-400 to-teal-600">{{config('app.name')}}</h1>
         </div>
         <h2 class="mb-4 text-2xl font-semibold text-center text-gray-600">Admin Login</h2>
         @foreach ($errors->all() as $error)

@@ -24,7 +24,7 @@
     @include("admin.layouts.navbar")
     <div class="flex flex-row flex-wrap h-screen">
         @include('admin.layouts.sidebar')
-        <div class="bg-gray-100 flex-1 p-6 md:mt-16 w-1/2 md:w-full">
+        <div class="flex-1 w-1/2 p-6 bg-gray-100 md:mt-32 md:w-full">
             @yield("content")
         </div>
     </div>

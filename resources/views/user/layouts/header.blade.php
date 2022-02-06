@@ -1,7 +1,7 @@
 <section
     class="relative flex flex-row items-center justify-around mb-10 bg-gray-200 sm:flex-col sm:h-fit h-28 sm:space-y-3 sm:py-4 w-100 header">
     @auth
-    <div class="flex items-center navigation space-x-3">
+    <div class="flex items-center space-x-3 navigation">
         <a href="{{route('user.edit.index')}}"
             class="px-3 py-2 text-sm text-gray-600 rounded-md hover:bg-gray-50 hover:text-gray-800 bg-stone-300">Edit
             Profile</a>
@@ -11,7 +11,7 @@
     </div>
     @endauth
     <a href="{{route('user.home')}}">
-        <img class="w-[100px]" src="{{asset('images/logo.png')}}" alt="ISLAMIC AUDIOBOOK">
+        <h1 class="text-transparent logo-text bg-clip-text bg-gradient-to-br from-blue-400 to-teal-600">{{config('app.name')}}</h1>
     </a>
     @auth
     <div class="flex flex-col items-center navigation justify-self-end">
@@ -30,7 +30,7 @@
     </div>
     @endauth
     @guest
-    <div class="log-reg flex space-x-4">
+    <div class="flex space-x-4 log-reg">
         <div class="flex flex-col items-center navigation justify-self-end">
             <a href="{{route('user.login.index')}}" title="Login"
                 class="flex p-2 px-4 space-x-3 text-white transition duration-300 bg-gradient-to-l hover:from-blue-500 hover:to-indigo-400 from-blue-300 to-indigo-400 rounded-xl">
