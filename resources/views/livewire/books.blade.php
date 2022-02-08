@@ -41,6 +41,16 @@
                     <h5 class="mb-3 italic text-gray-400 normal-case text-md font-extralight">by {{$book->author}}</h5>
                     @auth
                     @if (auth()->user()->group_status != 1)
+                    @if ($book->short_link)
+                    <a class="flex items-center justify-center w-10/12 px-2 py-2 m-auto mb-3 space-x-2 text-white transition ease-in-out bg-blue-300 rounded-xl hover:bg-blue-500 focus:ring-offset-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        target="_blank" href="{{$book->short_link}}">
+                        <span>Read Short Book</span>
+                        <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                        </svg>
+                    </a>
+                    @endif
                     <p class="px-2 py-3 my-3 text-xs italic font-light normal-case">
                         {{config('app.not_activated_group')}}</p>
                     @else
@@ -53,16 +63,6 @@
                                 d="M14 5l7 7m0 0l-7 7m7-7H3" />
                         </svg>
                     </a>
-                    @if ($book->short_link)
-                    <a class="flex items-center justify-center w-10/12 px-2 py-2 m-auto mb-3 space-x-2 text-white transition ease-in-out bg-blue-300 rounded-xl hover:bg-blue-500 focus:ring-offset-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                        target="_blank" href="{{$book->short_link}}">
-                        <span>Read Short Book</span>
-                        <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                        </svg>
-                    </a>
-                    @endif
                     @endif
                     @endauth
                     @guest

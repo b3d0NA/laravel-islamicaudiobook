@@ -13,7 +13,8 @@ class HomeController extends Controller
         $inactive_notice = Setting::where("key", "inactive_users_notice")->select("key", "value")->first();
         $active_notice = Setting::where("key", "active_users_notice")->select("key", "value")->first();
         $paid_notice = Setting::where("key", "paid_users_notice")->select("key", "value")->first();
-        return view('user.index', compact("inactive_notice", "active_notice", "paid_notice"));
+        $guest_notice = Setting::where("key", "guests_notice")->select("key", "value")->first();
+        return view('user.index', compact("inactive_notice", "active_notice", "paid_notice", "guest_notice"));
     }
 
     public function editProfileIndex(){

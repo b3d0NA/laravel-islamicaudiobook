@@ -45,6 +45,12 @@
                         class="px-4 py-2 bg-gray-100 rounded-xl focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2"
                         name="paid_users_notice">{{$paid_u_notice->value}}</textarea>
             </div>
+            <div class="flex items-center mt-4 space-x-4">
+                <label class="text-lg font-base ">Guests notice: </label>
+                <textarea
+                        class="px-4 py-2 bg-gray-100 rounded-xl focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2"
+                        name="guests_notice">{{$guest_notice->value}}</textarea>
+            </div>
             <div class="submit-btn mt-14">
                 <button type="submit" name="submit"
                     class="px-6 py-2 text-white rounded-lg bg-gradient-to-r from-sky-400 to-teal-400 hover:from-teal-500 hover:to-sky-500">Save</button>

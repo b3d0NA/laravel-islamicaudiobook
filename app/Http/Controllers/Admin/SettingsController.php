@@ -12,8 +12,9 @@ class SettingsController extends Controller
         $inactive_u_notice = Setting::where("key", "inactive_users_notice")->select("key", "value")->first();
         $active_u_notice = Setting::where("key", "active_users_notice")->select("key", "value")->first();
         $paid_u_notice = Setting::where("key", "paid_users_notice")->select("key", "value")->first();
+        $guest_notice = Setting::where("key", "guests_notice")->select("key", "value")->first();
 
-        return view("admin.settings", compact("inactive_u_notice", "active_u_notice", "paid_u_notice"));
+        return view("admin.settings", compact("inactive_u_notice", "active_u_notice", "paid_u_notice", "guest_notice"));
     }
 
     public function update(Request $request){
@@ -25,6 +26,8 @@ class SettingsController extends Controller
             ->update(["value" => $request->active_users_notice]);
         Setting::where("key", "paid_users_notice")
             ->update(["value" => $request->paid_users_notice]);
+        Setting::where("key", "guests_notice")
+            ->update(["value" => $request->guests_notice]);
         
         return back()
             ->with("success", "Alhamdulillah! Changes updated successfully.");
