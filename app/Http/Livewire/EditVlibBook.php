@@ -16,6 +16,7 @@ class EditVlibBook extends Component
     public $page_number;
     public $cover_link;
     public $read_link;
+    public $short_link;
 
     protected $listeners = ["prepareBookEdit"];
 
@@ -26,6 +27,7 @@ class EditVlibBook extends Component
         "page_number" => "required|numeric",
         "cover_link" => "required",
         "read_link" => "required",
+        "short_link" => "nullable",
     ];
 
     protected $messages = [
@@ -46,6 +48,7 @@ class EditVlibBook extends Component
         $this->page_number = $book->page_number;
         $this->cover_link = $book->cover_link;
         $this->read_link = $book->read_link;
+        $this->short_link = $book->short_link;
         $this->isLoading = false;
     }
 

@@ -14,6 +14,7 @@ class AddVlibBook extends Component
     public $page_number;
     public $cover_link;
     public $read_link;
+    public $short_link;
 
     public function add(){
         (auth("admin")->guest()) && abort(Response::HTTP_FORBIDDEN);
@@ -24,6 +25,7 @@ class AddVlibBook extends Component
             "page_number" => "required|numeric",
             "cover_link" => "required",
             "read_link" => "required",
+            "short_link" => "nullable",
         ],
         [
             "name.required" => "Subhan ALLAH! Book name must be filled.",
@@ -34,7 +36,7 @@ class AddVlibBook extends Component
             "cover_link.required" => "Enter a cover link",
             "read_link.required" => "Enter a read link",
         ]);
-        Book::create($validated);
+        $book = Book::create($validated);
         $this->emit("BookAddedSuccesfully", "Alhamdulillah! Book added succesfully");
         $this->resetExcept("");
     }

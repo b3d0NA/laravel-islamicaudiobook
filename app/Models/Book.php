@@ -14,6 +14,7 @@ class Book extends Model
         'page_number',
         'cover_link',
         'read_link',
+        'short_link',
         'read',
     ];
     use HasFactory;
