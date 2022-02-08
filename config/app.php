@@ -2,7 +2,7 @@
 
 return [
 
-    "not_activated_group" => "Inna Lillah! You don't have access to read books. Contact Admin
+    "not_activated_group" => "Inna Lillah! You don't have access to read the full book. Contact Admin
     In Shaa Allah!",
 
     /*
