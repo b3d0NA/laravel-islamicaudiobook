@@ -11,7 +11,7 @@ class AuthController extends Controller
 {
 
     public function login(LoginRequest $request){
-        if(auth()->attempt($request->only("email", "password"))){
+        if(auth()->attempt($request->only("email", "password"), true)){
             return redirect()->route("user.home");
         }else{
             return redirect()
