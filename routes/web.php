@@ -11,6 +11,10 @@ use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, "index"])->name("user.home");
+Route::get("terms", [HomeController::class, "terms"])->name("user.pages.terms");
+Route::get("disclaimers", [HomeController::class, "disclaimers"])->name("user.pages.disclaimers");
+Route::get("contact", [HomeController::class, "contact"])->name("user.pages.contact");
+Route::post("contact", [HomeController::class, "contactSendMail"])->name("user.contact.sendmail");
 Route::middleware("auth")->group(function (){
     Route::get('edit/profile', [HomeController::class, "editProfileIndex"])->name("user.edit.index");
     Route::get('messages', [UserMessageController::class, "index"])->name("user.messages.index");
@@ -25,11 +29,7 @@ Route::middleware("guest")->group(function (){
     Route::post("login", [AuthController::class, "login"])->name("user.login");
     Route::view("register", "user.auth.register")->name("user.register.index");
     Route::post("register", [AuthController::class, "register"])->name("user.register");
-
-    Route::get("terms", [HomeController::class, "terms"])->name("user.pages.terms");
-    Route::get("disclaimers", [HomeController::class, "disclaimers"])->name("user.pages.disclaimers");
-    Route::get("contact", [HomeController::class, "contact"])->name("user.pages.contact");
-    Route::post("contact", [HomeController::class, "contactSendMail"])->name("user.contact.sendmail");
+    
 });
 
 Route::middleware(['admin.auth'])->prefix("admin")->group(function () {
