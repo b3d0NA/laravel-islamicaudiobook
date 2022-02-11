@@ -25,6 +25,11 @@ Route::middleware("guest")->group(function (){
     Route::post("login", [AuthController::class, "login"])->name("user.login");
     Route::view("register", "user.auth.register")->name("user.register.index");
     Route::post("register", [AuthController::class, "register"])->name("user.register");
+
+    Route::get("terms", [HomeController::class, "terms"])->name("user.pages.terms");
+    Route::get("disclaimers", [HomeController::class, "disclaimers"])->name("user.pages.disclaimers");
+    Route::get("contact", [HomeController::class, "contact"])->name("user.pages.contact");
+    Route::post("contact", [HomeController::class, "contactSendMail"])->name("user.contact.sendmail");
 });
 
 Route::middleware(['admin.auth'])->prefix("admin")->group(function () {
@@ -37,8 +42,22 @@ Route::middleware(['admin.auth'])->prefix("admin")->group(function () {
     Route::get('messages', [UserController::class, "messages"])->name("admin.users.messages.index");
     Route::get('messages/{user:id}', [UserController::class, "messagesView"])->name("admin.users.messages.view");
     Route::post('messages/{user:id}', [UserController::class, "storeMessage"])->name("admin.users.messages.store");
-    Route::get('settings', [SettingsController::class, "index"])->name("admin.settings.index");
-    Route::post('settings', [SettingsController::class, "update"])->name("admin.settings.update");
+    Route::prefix("settings")->group(function (){
+        Route::get('settings', [SettingsController::class, "index"])->name("admin.settings.index");
+        Route::get('general', [SettingsController::class, "general"])->name("admin.settings.general.index");
+        Route::post('general', [SettingsController::class, "update"])->name("admin.settings.general.update");
+
+        Route::prefix("pages")->group(function (){
+            Route::get("index", [SettingsController::class, "pages"])->name("admin.settings.pages.index");
+
+            Route::get("terms", [SettingsController::class, "terms"])->name("admin.settings.pages.terms.index");
+            Route::post("terms", [SettingsController::class, "termsUpdate"])->name("admin.settings.pages.terms.update");
+            Route::get("disclaimer", [SettingsController::class, "disclaimer"])->name("admin.settings.pages.disclaimer.index");
+            Route::post("disclaimer", [SettingsController::class, "disclaimerUpdate"])->name("admin.settings.pages.disclaimer.update");
+            Route::get("contact", [SettingsController::class, "contact"])->name("admin.settings.pages.contact.index");
+            Route::post("contact", [SettingsController::class, "contactUpdate"])->name("admin.settings.pages.contact.update");
+        });
+    });
     Route::post('logout', [AdminAuthController::class, "logout"])->name("admin.logout");
 });
 

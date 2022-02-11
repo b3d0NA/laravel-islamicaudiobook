@@ -11,7 +11,8 @@
     </div>
     @endauth
     <a href="{{route('user.home')}}">
-        <h1 class="text-transparent logo-text bg-clip-text bg-gradient-to-br from-blue-400 to-teal-600">{{config('app.name')}}</h1>
+        <h1 class="text-transparent logo-text bg-clip-text bg-gradient-to-br from-blue-400 to-teal-600">
+            {{config('app.name')}}</h1>
     </a>
     @auth
     <div class="flex flex-col items-center navigation justify-self-end">
@@ -41,6 +42,7 @@
                 </svg>
             </a>
         </div>
+        @if ($registration_status->value == 1)
         <div class="flex flex-col items-center navigation justify-self-end">
             <a href="{{route('user.register.index')}}" title="Regsiter"
                 class="flex p-2 px-4 space-x-3 text-white transition duration-300 bg-gradient-to-l hover:from-teal-500 hover:to-green-400 from-green-300 to-teal-400 rounded-xl">
@@ -51,6 +53,7 @@
                 </svg>
             </a>
         </div>
+        @endif
     </div>
     @endguest
 </section>

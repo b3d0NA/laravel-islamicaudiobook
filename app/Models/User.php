@@ -25,7 +25,8 @@ class User extends Authenticatable
         'fb_link',
         'group_status',
         'paid_status',
-        'gender'
+        'gender',
+        'last_login_at'
     ];
 
     /**
@@ -37,6 +38,8 @@ class User extends Authenticatable
         'password',
         'remember_token',
     ];
+
+    protected $dates = ["last_login_at"];
 
     /**
      * The attributes that should be cast.

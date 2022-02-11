@@ -26,5 +26,6 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         View::share('maintenance', Setting::where("key", "maintenance")->select("key", "value")->first());
+        View::share('registration_status', Setting::where("key", "registration_status")->select("key", "value")->first());
     }
 }

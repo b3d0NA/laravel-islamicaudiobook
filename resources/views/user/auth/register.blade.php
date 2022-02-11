@@ -5,9 +5,20 @@
 
 <section class="flex flex-col items-center justify-center main-login h-[900px]">
     <div class="mb-5 login-image">
-        <h1 class="text-transparent logo-text bg-clip-text bg-gradient-to-br from-blue-400 to-teal-600">{{config('app.name')}}</h1>
+        <h1 class="text-transparent logo-text bg-clip-text bg-gradient-to-br from-blue-400 to-teal-600">
+            {{config('app.name')}}</h1>
     </div>
     @if (!$maintenance->value)
+    @if ($registration_status->value == 0)
+    <div class="px-4 mx-auto my-32 text-center maint h-28 sm:px-8">
+        <h2
+            class="flex items-center justify-center mb-8 space-x-4 text-3xl font-light text-center text-gray-700 sm:flex-col sm:space-y-6">
+            <i class="text-6xl fas fa-cog animate-spin"></i>
+            <span class="text-gray-500 normal-case">Inna Lillah! Registration is closed right now! Please wait until it
+                opens again</span>
+        </h2>
+    </div>
+    @else
     <div class="p-5 bg-white login-form rounded-xl md:w-[320px] w-[400px]">
         <h2 class="mb-4 text-2xl font-semibold text-center text-gray-600">Register</h2>
         @foreach ($errors->all() as $error)
@@ -56,11 +67,14 @@
         <p class="mt-5 text-center normal-case">Already have an account? Login <a href="{{route('user.login.index')}}"
                 class="text-blue-500 hover:underline">here</a></p>
     </div>
+    @endif
     @else
     <div class="px-4 mx-auto my-32 text-center maint h-28 sm:px-8">
-        <h2 class="flex items-center justify-center mb-8 space-x-4 text-3xl font-light text-center text-gray-700 sm:flex-col sm:space-y-6">
+        <h2
+            class="flex items-center justify-center mb-8 space-x-4 text-3xl font-light text-center text-gray-700 sm:flex-col sm:space-y-6">
             <i class="text-6xl fas fa-cog animate-spin"></i>
-            <span class="text-gray-500 normal-case">SubhanAllaah! Site is under maintenance right now. You can not register</span>
+            <span class="text-gray-500 normal-case">SubhanAllaah! Site is under maintenance right now. You can not
+                register</span>
         </h2>
     </div>
     @endif

@@ -1,7 +1,7 @@
-<div class="py-3 my-3 px-3">
-    <div class="card-body overflow-x-scroll" x-init>
-        <h2 class="font-bold text-lg mb-10 text-center">Users list</h2>
-        <div class="feature flex flex-wrap space-x-4 space-y-2 my-3">
+<div class="px-3 py-3 my-3">
+    <div class="overflow-x-scroll card-body" x-init>
+        <h2 class="mb-10 text-lg font-bold text-center">Users list</h2>
+        <div class="flex flex-wrap my-3 space-x-4 space-y-2 feature">
             <input wire:model.debounce.500ms="search" type="search"
                 class="px-4 py-2 text-md rounded-md w-[400px] bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
                 placeholder="Search by name, email, mobile">
@@ -11,6 +11,12 @@
                 <option value="">Gender</option>
                 <option value="0">Male</option>
                 <option value="1">Female</option>
+            </select>
+            <select wire:model.debounce.500ms="filter"
+                class="p-2 px-4 text-gray-700 bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 rounded-xl"
+                name="gender">
+                <option value="">User Filter</option>
+                <option value="1">Inactive since 30 days</option>
             </select>
             <select wire:model.debounce.500ms="group_status"
                 class="p-2 px-4 text-gray-700 bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 rounded-xl"
@@ -28,7 +34,7 @@
             </select>
         </div>
         <!-- start a table -->
-        <table class="table-auto w-full border rounded-xl overflow-x-scroll">
+        <table class="w-full overflow-x-scroll border table-auto rounded-xl">
 
             <!-- table head -->
             <thead class="text-center bg-gray-50 rounded-xl">
@@ -51,50 +57,50 @@
                 @forelse ($this->users as $user)
                 <!-- item -->
                 <tr @class(["bg-teal-50"=> $loop->even])>
-                    <td class="normal-case text-sm  border-gray-200">
+                    <td class="text-sm normal-case border-gray-200">
                         {{$loop->iteration}}
                     </td>
-                    <td class="normal-case text-sm  border-gray-200 text-center">
+                    <td class="text-sm text-center normal-case border-gray-200">
                         {{$user->name}}
                     </td>
-                    <td class="normal-case text-sm  border-gray-200 text-center">
+                    <td class="text-sm text-center normal-case border-gray-200">
                         {{$user->email}}
                     </td>
-                    <td class="normal-case text-sm  border-gray-200 text-center">
+                    <td class="text-sm text-center normal-case border-gray-200">
                         {{$user->mobile}}
                     </td>
-                    <td class="normal-case text-sm  border-gray-200 text-center">
-                        <a target="_blank" class="text-blue-500 hover:underline normal-case" href="{{$user->fb_link}}">
+                    <td class="text-sm text-center normal-case border-gray-200">
+                        <a target="_blank" class="text-blue-500 normal-case hover:underline" href="{{$user->fb_link}}">
                             {{\Str::limit($user->fb_link, 20, "...")}}
                         </a>
                     </td>
-                    <td class="normal-case text-sm  border-gray-200 text-center">
+                    <td class="text-sm text-center normal-case border-gray-200">
                         @if ($user->gender == 0)
                         Male
                         @else
                         Female
                         @endif
                     </td>
-                    <td class="normal-case text-sm  border-gray-200 text-center">
-                        <label class="switch relative inline-block h-5 w-10 mr-4">
+                    <td class="text-sm text-center normal-case border-gray-200">
+                        <label class="relative inline-block w-10 h-5 mr-4 switch">
                             <input wire:click="updateGroupStatus({{$user->id}})" type="checkbox"
                                 @if($user->group_status)
                             checked @endif>
-                            <span class="slider cursor-pointer inset-0 absolute round rounded-full"></span>
+                            <span class="absolute inset-0 rounded-full cursor-pointer slider round"></span>
                         </label>
                     </td>
-                    <td class="normal-case text-sm  border-gray-200 text-center">
-                        <label class="switch relative inline-block h-5 w-10 mr-4">
+                    <td class="text-sm text-center normal-case border-gray-200">
+                        <label class="relative inline-block w-10 h-5 mr-4 switch">
                             <input wire:click="updatePaidStatus({{$user->id}})" type="checkbox" @if($user->paid_status)
                             checked @endif>
-                            <span class="slider cursor-pointer inset-0 absolute round rounded-full"></span>
+                            <span class="absolute inset-0 rounded-full cursor-pointer slider round"></span>
                         </label>
                     </td>
                     <td wire:ignore.self
-                        class="normal-case text-sm  border-gray-200 text-center flex space-x-2 space-y-2 items-center">
+                        class="flex items-center space-x-2 space-y-2 text-sm text-center normal-case border-gray-200">
                         <button wire:click="edit({{$user->id}})"
                             class="btn-bs-primary focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
-                            <svg wire:loading wire:target="edit({{$user->id}})" class="animate-spin h-5 w-5 text-white"
+                            <svg wire:loading wire:target="edit({{$user->id}})" class="w-5 h-5 text-white animate-spin"
                                 xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                                 <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor"
                                     stroke-width="4">
@@ -107,7 +113,7 @@
                         </button>
                         <button wire:click.prevent="delete({{$user->id}})" href="#" class="btn-bs-danger">
                             <svg wire:loading wire:target="delete({{$user->id}})"
-                                class="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                class="w-5 h-5 text-white animate-spin" xmlns="http://www.w3.org/2000/svg" fill="none"
                                 viewBox="0 0 24 24">
                                 <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor"
                                     stroke-width="4">
@@ -122,7 +128,7 @@
                 </tr>
                 @empty
                 <tr>
-                    <td colspan='9' class="text-center text-orange-500 text-xl py-3">In Shaa Allaah! User will be
+                    <td colspan='9' class="py-3 text-xl text-center text-orange-500">In Shaa Allaah! User will be
                         registered
                         soon. Be
                         patient.

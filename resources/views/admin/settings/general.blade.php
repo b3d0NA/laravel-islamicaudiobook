@@ -5,8 +5,18 @@
 @section("content")
 <div class="card">
     <div class="card-body" x-init>
-        <h2 class="mb-8 text-2xl font-bold text-center text-gray-700">Site Settings</h2>
-        <form action="{{route('admin.settings.update')}}" method="post">
+
+        <h2 class="mb-8 text-2xl font-bold text-center text-gray-700 flex space-x-4 justify-center items-center">
+            <a href="{{route('admin.settings.index')}}" class="">
+                <svg class="h-8 w-8 hover:fill-blue-500" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd"
+                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm.707-10.293a1 1 0 00-1.414-1.414l-3 3a1 1 0 000 1.414l3 3a1 1 0 001.414-1.414L9.414 11H13a1 1 0 100-2H9.414l1.293-1.293z"
+                        clip-rule="evenodd" />
+                </svg>
+            </a>
+            <span>General Settings</span>
+        </h2>
+        <form action="{{route('admin.settings.general.update')}}" method="post">
             @csrf
             @if (session('success'))
             <div class="flex items-center mb-5 space-x-4 alert alert-success">
@@ -27,29 +37,38 @@
                     <option @if($maintenance->value == 1) selected @endif value="1">Activate</option>
                 </select>
             </div>
+            <div class="flex items-center space-x-4 maintenance mt-4">
+                <label class="text-lg font-base ">Registration: </label>
+                <select required
+                    class="p-2 px-4 text-gray-700 bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 rounded-xl"
+                    name="registration">
+                    <option @if($registration_status->value == 0) selected @endif value="0">Disabled</option>
+                    <option @if($registration_status->value == 1) selected @endif value="1">Enabled</option>
+                </select>
+            </div>
             <div class="flex items-center mt-4 space-x-4">
                 <label class="text-lg font-base ">Active users notice: </label>
                 <textarea
-                        class="px-4 py-2 bg-gray-100 rounded-xl focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2"
-                        name="active_users_notice">{{$active_u_notice->value}}</textarea>
+                    class="px-4 py-2 bg-gray-100 rounded-xl focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2"
+                    name="active_users_notice">{{$active_u_notice->value}}</textarea>
             </div>
             <div class="flex items-center mt-4 space-x-4">
                 <label class="text-lg font-base ">Inactive users notice: </label>
                 <textarea
-                        class="px-4 py-2 bg-gray-100 rounded-xl focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2"
-                        name="inactive_users_notice">{{$inactive_u_notice->value}}</textarea>
+                    class="px-4 py-2 bg-gray-100 rounded-xl focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2"
+                    name="inactive_users_notice">{{$inactive_u_notice->value}}</textarea>
             </div>
             <div class="flex items-center mt-4 space-x-4">
                 <label class="text-lg font-base ">Paid users notice: </label>
                 <textarea
-                        class="px-4 py-2 bg-gray-100 rounded-xl focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2"
-                        name="paid_users_notice">{{$paid_u_notice->value}}</textarea>
+                    class="px-4 py-2 bg-gray-100 rounded-xl focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2"
+                    name="paid_users_notice">{{$paid_u_notice->value}}</textarea>
             </div>
             <div class="flex items-center mt-4 space-x-4">
                 <label class="text-lg font-base ">Guests notice: </label>
                 <textarea
-                        class="px-4 py-2 bg-gray-100 rounded-xl focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2"
-                        name="guests_notice">{{$guest_notice->value}}</textarea>
+                    class="px-4 py-2 bg-gray-100 rounded-xl focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2"
+                    name="guests_notice">{{$guest_notice->value}}</textarea>
             </div>
             <div class="submit-btn mt-14">
                 <button type="submit" name="submit"

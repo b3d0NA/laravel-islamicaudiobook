@@ -14,6 +14,7 @@ class Users extends Component
     public $gender;
     public $group_status;
     public $paid_status;
+    public $filter;
     
     protected $listeners = ["UserUpdatedSuccesfully" => '$refresh', "UserDeletedSuccessfully" => '$refresh'];
 
@@ -29,6 +30,11 @@ class Users extends Component
                     ->when($this->gender != "", function ($query){
                         $this->resetPage();
                         return $query->where("gender", $this->gender);
+                    })
+                    ->when($this->filter == 1, function ($query){
+                        $this->resetPage();
+                        return $query->whereDate('last_login_at', '<', now()->subDays(30))
+                                    ->orWhereNull("last_login_at");
                     })
                     ->when($this->group_status != "", function ($query){
                         $this->resetPage();

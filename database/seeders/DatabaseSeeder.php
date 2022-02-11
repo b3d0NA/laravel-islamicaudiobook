@@ -16,9 +16,13 @@ class DatabaseSeeder extends Seeder
     {
         // \App\Models\User::factory(10)->create();
         Setting::factory()->create();
+        Setting::factory()->create(["key" => "registration_status", "value" => "1"]);
         Setting::factory()->create(["key" => "inactive_users_notice", "value" => ""]);
         Setting::factory()->create(["key" => "active_users_notice", "value" => ""]);
         Setting::factory()->create(["key" => "paid_users_notice", "value" => ""]);
         Setting::factory()->create(["key" => "guests_notice", "value" => ""]);
+        Setting::factory()->create(["key" => "terms_content", "value" => ""]);
+        Setting::factory()->create(["key" => "disclaimer_content", "value" => ""]);
+        Setting::factory()->create(["key" => "contact_email", "value" => ""]);
     }
 }

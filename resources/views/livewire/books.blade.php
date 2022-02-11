@@ -32,8 +32,10 @@
                         </h2>
                         <h2 class="p-1 px-4 text-white rounded-lg text-md bg-gradient-to-r from-red-300 to-red-500">
                             Page: {{$book->page_number}}</h2>
+                        @auth
                         <h2 class="p-1 px-4 text-white rounded-lg text-md bg-gradient-to-r from-teal-300 to-teal-500">
                             Total Reads: {{\App\Http\Helpers\NumberFormat::readable($book->read)}}</h2>
+                        @endauth
                     </div>
                 </div>
                 <div class="mt-2 text-center book-info">
@@ -77,8 +79,7 @@
                     </a>
                     @endif
                     <p class="my-3 normal-case">
-                        <a href="{{route('user.login.index')}}"
-                            class="text-blue-500 hover:underline">
+                        <a href="{{route('user.login.index')}}" class="text-blue-500 hover:underline">
                             Login
                         </a> to read full book
                     </p>

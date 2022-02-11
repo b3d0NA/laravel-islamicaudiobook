@@ -2,10 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ContactRequest;
 use App\Http\Requests\EditProfileRequest;
 use App\Http\Requests\UserChangePasswordRequest;
+use App\Mail\ContactMailer;
 use App\Models\Setting;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
+
+use function Ramsey\Uuid\v1;
 
 class HomeController extends Controller
 {
@@ -33,5 +38,27 @@ class HomeController extends Controller
         return redirect()
             ->route("user.edit.index")
             ->with("success", "Alhamdulillah! Password changed sucessfully");
+    }
+
+    public function terms(){
+        $terms = Setting::where("key", "terms_content")->first()->value;
+        return view("user.terms", compact("terms"));
+    }
+
+    public function disclaimers(){
+        $disclaimer = Setting::where("key", "disclaimer_content")->first()->value;
+        return view("user.disclaimers", compact("disclaimer"));
+    }
+
+    public function contact(){
+        return view("user.contact");
+    }
+
+    public function contactSendMail(ContactRequest $request){
+        $mailTo = Setting::where('key', "contact_email")->first()->value;
+        Mail::to($mailTo)
+            ->send(new ContactMailer($request->name, $request->email, $request->subject, $request->message));
+        return redirect()->route("user.pages.contact")
+                ->with("success", "Alhamdulillah! Admin got your message. Will response ASAP");
     }
 }

@@ -68,7 +68,7 @@
                     </div>
                     <div class="flex flex-col justify-center my-3 space-y-4">
                         <label class="font-base text-md">Email: </label>
-                        <input type="text"
+                        <input type="email"
                             class="w-full px-4 py-2 bg-gray-100 rounded-xl focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2"
                             name="email" value="{{$user->email}}">
                     </div>

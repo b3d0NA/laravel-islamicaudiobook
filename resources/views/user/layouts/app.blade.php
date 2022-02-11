@@ -20,10 +20,19 @@
     @include("user.layouts.header")
     @yield("content")
     <!-- script -->
+    <footer class="bg-gray-50 py-10 mt-5">
+        <div class="flex justify-center items-center space-x-4 sm:flex-col sm:space-y-4">
+            <a href="{{route('user.pages.terms')}}" class="hover:underline text-base text-sky-500">Terms &
+                Conditions</a>
+            <a href="{{route('user.pages.contact')}}" class="hover:underline text-base text-sky-500">Contact Us</a>
+            <a href="{{route('user.pages.disclaimers')}}" class="hover:underline text-base text-sky-500">Disclaimers</a>
+        </div>
+    </footer>
     @livewireScripts
     <script src="{{asset('js/app.js')}}"></script>
     <!-- end script -->
     @stack("custom-scripts")
+
 </body>
 
 </html>
