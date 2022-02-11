@@ -1,17 +1,19 @@
 <section
     class="relative flex flex-row items-center justify-around mb-10 bg-gray-200 sm:flex-col sm:h-fit h-28 sm:space-y-3 sm:py-4 w-100 header">
     @auth
-    <div class="flex items-center space-x-3 navigation">
+    <div class="flex items-center space-x-1 navigation sm:flex-col sm:space-y-3">
         <a href="{{route('user.edit.index')}}"
-            class="px-3 py-2 text-sm text-gray-600 rounded-md hover:bg-gray-50 hover:text-gray-800 bg-stone-300">Edit
+            class="px-3 py-2 text-sm text-gray-600 border rounded-md border-stone-300 hover:bg-gray-50 hover:text-gray-800">Edit
             Profile</a>
         <a href="{{route('user.messages.index')}}"
-            class="px-3 py-2 text-sm text-gray-600 rounded-md hover:bg-gray-50 hover:text-gray-800 bg-stone-300">Message
+            class="px-3 py-2 text-sm text-gray-600 border rounded-md border-stone-300 hover:bg-gray-50 hover:text-gray-800">Message
             Admin</a>
+        <a href="{{route('user.payment.index')}}"
+            class="px-3 py-2 text-sm text-gray-600 border rounded-md border-stone-300 hover:bg-gray-50 hover:text-gray-800">Make Payment</a>
     </div>
     @endauth
-    <a href="{{route('user.home')}}">
-        <h1 class="text-transparent logo-text bg-clip-text bg-gradient-to-br from-blue-400 to-teal-600">
+    <a href="{{route('user.home')}}" class="w-4/12 text-center md:w-fit">
+        <h1 class="text-center text-transparent logo-text bg-clip-text bg-gradient-to-br from-blue-400 to-teal-600">
             {{config('app.name')}}</h1>
     </a>
     @auth

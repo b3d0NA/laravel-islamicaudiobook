@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\AdminMessageRequest;
 use App\Http\Requests\UserMessageRequest;
 use App\Models\AdminMessage;
 use App\Models\User;
@@ -26,7 +27,7 @@ class UserController extends Controller
         return view("admin.users.messages.view", compact("messages", "user"));
     }
 
-    public function storeMessage(User $user, UserMessageRequest $request){
+    public function storeMessage(User $user, AdminMessageRequest $request){
         AdminMessage::create([
             "user_id" => $user->id,
             "is_admin" => 1,

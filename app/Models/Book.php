@@ -16,6 +16,7 @@ class Book extends Model
         'read_link',
         'short_link',
         'read',
+        'status'
     ];
     use HasFactory;
 }

@@ -10,12 +10,12 @@ class VirtualLibrary extends Component
 {
     use WithPagination;
 
-    protected $listeners = ["BookAddedSuccesfully" => '$refresh', "BookUpdatedSuccesfully" => '$refresh', "BookDeletedSuccessfully" => '$refresh'];
+    protected $listeners = ["BookAddedSuccesfully" => '$refresh', "BookUpdatedSuccesfully" => '$refresh', "BookDeletedSuccessfully" => '$refresh', "BookStatusChangedSuccessfully" => '$refresh'];
 
     public $search;
+    public $status;
     public function getBooksProperty(){
         return Book::when($this->search >= 2 , function ($query){
-                        $this->resetPage();
                         $query->Where("name", 'LIKE', '%' . $this->search . '%');
                         $query->orWhere("author", 'LIKE', '%' . $this->search . '%');
                         $query->orWhere("publication", 'LIKE', '%' . $this->search . '%');
@@ -23,6 +23,15 @@ class VirtualLibrary extends Component
                     })
                     ->latest()
                     ->paginate(15);
+    }
+
+
+    public function updatedSearch(){
+        $this->resetPage();
+    }
+    public function statusChange(Book $book, $value)
+    {
+        $this->emit("prepareBookStatusChange", $book, $value);
     }
 
     public function edit($id){

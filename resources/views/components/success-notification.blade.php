@@ -38,6 +38,15 @@
         Livewire.on('UserPaidStatusUpdatedSuccessfully', (message) => {
             showNotification(message)
         })
+        Livewire.on('PaymentDeletedSuccessfully', (message) => {
+            showNotification(message)
+        })
+        Livewire.on('PaymentStatusChangedSuccessfully', (message) => {
+            showNotification(message)
+        })
+        Livewire.on('BookStatusChangedSuccessfully', (message) => {
+            showNotification(message)
+        })
         Livewire.on('MailSentUser', (message) => {
             showNotification(message)
         })

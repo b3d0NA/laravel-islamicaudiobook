@@ -61,6 +61,13 @@
                         class="w-full px-3 py-3 bg-gray-100 rounded-xl focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2">
                     <input wire:model.defer="short_link" type="text" placeholder="Short read link"
                         class="w-full px-3 py-3 bg-gray-100 rounded-xl focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2">
+                    <select wire:model.defer="status" required
+                        class="w-full px-3 py-3 bg-gray-100 rounded-xl focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2">
+                        <option disabled>Select book status</option>
+                        <option value="0">Draft</option>
+                        <option value="1">Active</option>
+                        <option value="2">Paid</option>
+                    </select>
                 </div>
             </div>
             <div class="flex flex-row-reverse px-6 py-3 bg-gray-50 sm:px-4 sm:block">

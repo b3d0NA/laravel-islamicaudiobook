@@ -13,16 +13,17 @@
             <!-- table head -->
             <thead class="text-center bg-gray-50 rounded-xl">
                 <tr>
-                    <th class="py-5 text-sm font-semibold tracking-wide">No.</th>
-                    <th class="py-5 text-sm font-semibold tracking-wide text-center">name</th>
-                    <th class="py-5 text-sm font-semibold tracking-wide text-center">author</th>
-                    <th class="py-5 text-sm font-semibold tracking-wide text-center">publication</th>
-                    <th class="py-5 text-sm font-semibold tracking-wide text-center">page number</th>
-                    <th class="py-5 text-sm font-semibold tracking-wide text-center">cover</th>
-                    <th class="py-5 text-sm font-semibold tracking-wide text-center">read link</th>
-                    <th class="py-5 text-sm font-semibold tracking-wide text-center">short link</th>
-                    <th class="py-5 text-sm font-semibold tracking-wide text-center">read count</th>
-                    <th class="py-5 text-sm font-semibold tracking-wide text-center">actions</th>
+                    <th class="py-5 text-sm capitalize font-semibold tracking-wide">No.</th>
+                    <th class="py-5 text-sm capitalize font-semibold tracking-wide text-center">name</th>
+                    <th class="py-5 text-sm capitalize font-semibold tracking-wide text-center">author</th>
+                    <th class="py-5 text-sm capitalize font-semibold tracking-wide text-center">publication</th>
+                    <th class="py-5 text-sm capitalize font-semibold tracking-wide text-center">page number</th>
+                    <th class="py-5 text-sm capitalize font-semibold tracking-wide text-center">cover</th>
+                    <th class="py-5 text-sm capitalize font-semibold tracking-wide text-center">read link</th>
+                    <th class="py-5 text-sm capitalize font-semibold tracking-wide text-center">short link</th>
+                    <th class="py-5 text-sm capitalize font-semibold tracking-wide text-center">read count</th>
+                    <th class="py-5 text-sm capitalize font-semibold tracking-wide text-center">book status</th>
+                    <th class="py-5 text-sm capitalize font-semibold tracking-wide text-center">actions</th>
                 </tr>
             </thead>
             <!-- end table head -->
@@ -68,6 +69,20 @@
                     </td>
                     <td class="p-2 mb-4 text-sm font-normal tracking-wider text-center border-r border-gray-200">
                         {{$book->read}}
+                    </td>
+                    <td class="p-2 mb-4 text-sm font-normal tracking-wider text-center border-r border-gray-200">
+                        <select wire:change="statusChange({{$book->id}}, $event.target.value)" @class(['w-full px-3 py-3
+                            rounded-xl focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2
+                            text-white' , 'bg-indigo-500'=>
+                            $book->status == 0
+                            , 'bg-teal-500'=> $book->status == 1
+                            , 'bg-sky-500'=> $book->status == 2
+                            ])>
+                            <option disabled>Select book status</option>
+                            <option @if($book->status==0) selected @endif value="0">Draft</option>
+                            <option @if($book->status==1) selected @endif value="1">Active</option>
+                            <option @if($book->status==2) selected @endif value="2">Paid</option>
+                        </select>
                     </td>
                     <td wire:ignore.self
                         class="flex items-center p-2 mb-4 space-x-2 space-y-2 text-sm font-normal tracking-wider text-center border-r border-gray-200">

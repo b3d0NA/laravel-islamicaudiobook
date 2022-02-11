@@ -42,6 +42,18 @@
               users
           </a>
           <!-- end link -->
+
+          <!-- link -->
+          <a href="{{route('admin.users.payments.index')}}"
+              class="mb-3 text-sm font-medium capitalize transition duration-500 ease-in-out hover:text-blue-600 flex">
+              <svg class="mr-2 w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M11 11V9a2 2 0 00-2-2m2 4v4a2 2 0 104 0v-1m-4-3H9m2 0h4m6 1a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              payments
+          </a>
+          <!-- end link -->
+
           <!-- link -->
           <a href="{{route('admin.users.sendmail.index')}}"
               class="mb-3 text-sm font-medium capitalize transition duration-500 ease-in-out hover:text-blue-600">

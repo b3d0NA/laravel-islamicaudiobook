@@ -61,5 +61,10 @@ class User extends Authenticatable
 
     public function lastMessage(){
         return $this->messages()->latest()->first();
-    } 
+    }
+    
+    public function payments()
+    {
+        return $this->hasMany(UserPayment::class);
+    }
 }

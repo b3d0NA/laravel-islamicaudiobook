@@ -23,6 +23,7 @@ class DatabaseSeeder extends Seeder
         Setting::factory()->create(["key" => "guests_notice", "value" => ""]);
         Setting::factory()->create(["key" => "terms_content", "value" => ""]);
         Setting::factory()->create(["key" => "disclaimer_content", "value" => ""]);
+        Setting::factory()->create(["key" => "payment_content", "value" => ""]);
         Setting::factory()->create(["key" => "contact_email", "value" => ""]);
     }
 }

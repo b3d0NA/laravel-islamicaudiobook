@@ -6,11 +6,11 @@
         <!-- table head -->
         <thead class="text-center bg-gray-50 rounded-xl">
             <tr>
-                <th class="py-5 text-sm font-semibold tracking-wide">No.</th>
-                <th class="py-5 text-sm font-semibold tracking-wide text-center">name</th>
-                <th class="py-5 text-sm font-semibold tracking-wide text-center">email</th>
-                <th class="py-5 text-sm font-semibold tracking-wide text-center">mobile</th>
-                <th class="py-5 text-sm font-semibold tracking-wide text-center">group status</th>
+                <th class="py-5 text-sm capitalize font-semibold tracking-wide">No.</th>
+                <th class="py-5 text-sm capitalize font-semibold tracking-wide text-center">name</th>
+                <th class="py-5 text-sm capitalize font-semibold tracking-wide text-center">email</th>
+                <th class="py-5 text-sm capitalize font-semibold tracking-wide text-center">mobile</th>
+                <th class="py-5 text-sm capitalize font-semibold tracking-wide text-center">group status</th>
             </tr>
         </thead>
         <!-- end table head -->
@@ -43,7 +43,7 @@
                         <span class="absolute inset-0 rounded-full cursor-pointer slider round"></span>
                     </label>
                 </td>
-                
+
             </tr>
             @empty
             <tr>

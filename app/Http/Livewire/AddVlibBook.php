@@ -15,6 +15,7 @@ class AddVlibBook extends Component
     public $cover_link;
     public $read_link;
     public $short_link;
+    public $status;
 
     public function add(){
         (auth("admin")->guest()) && abort(Response::HTTP_FORBIDDEN);
@@ -26,6 +27,7 @@ class AddVlibBook extends Component
             "cover_link" => "required",
             "read_link" => "required",
             "short_link" => "nullable",
+            "status" => "required",
         ],
         [
             "name.required" => "Subhan ALLAH! Book name must be filled.",
