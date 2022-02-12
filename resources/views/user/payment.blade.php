@@ -36,13 +36,13 @@
                             <label class="font-base text-md">Name: </label>
                             <input type="text"
                                 class="w-full px-4 py-2 bg-gray-100 rounded-xl focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2 disabled:bg-gradient-to-r disabled:text-gray-500 disabled:from-sky-50 disabled:to-teal-50"
-                                value="{{$user->name}}" name="name" disabled>
+                                value="{{$user->name}}" disabled>
                         </div>
                         <div class="flex flex-col justify-center w-6/12 my-3 space-y-4 md:w-full">
                             <label class="font-base text-md">Email: </label>
                             <input type="email"
                                 class="w-full px-4 py-2 bg-gray-100 rounded-xl focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2 disabled:bg-gradient-to-r disabled:text-gray-500 disabled:from-sky-50 disabled:to-teal-50"
-                                name="email" value="{{$user->email}}" disabled>
+                                value="{{$user->email}}" disabled>
                         </div>
                     </div>
                     <div class="flex w-full space-x-3 md:space-x-0 input-row md:flex-col">

@@ -6,6 +6,14 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class UserPaymentRequest extends FormRequest
 {
+
+    protected function prepareForValidation(){
+        $this->merge([
+            'name' => auth()->user()->name,
+            'email' => auth()->user()->email,
+        ]);
+    }
+
     /**
      * Determine if the user is authorized to make this request.
      *
