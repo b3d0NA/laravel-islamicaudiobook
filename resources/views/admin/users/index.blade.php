@@ -7,6 +7,8 @@
     <livewire:users />
 </div>
 
+
+<livewire:add-users />
 <livewire:user-edit />
 <livewire:user-delete />
 <livewire:toggle-user-group-status />

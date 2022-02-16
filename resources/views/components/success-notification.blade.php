@@ -47,6 +47,9 @@
         Livewire.on('BookStatusChangedSuccessfully', (message) => {
             showNotification(message)
         })
+        Livewire.on('UserAddedSuccesfully', (message) => {
+            showNotification(message)
+        })
         Livewire.on('MailSentUser', (message) => {
             showNotification(message)
         })

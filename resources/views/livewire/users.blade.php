@@ -5,6 +5,7 @@
             <input wire:model.debounce.500ms="search" type="search"
                 class="px-4 py-2 text-md rounded-md w-[400px] bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
                 placeholder="Search by name, email, mobile">
+            <button x-on:click="$dispatch('open-add-users-modal')" class="my-3 btn">Add Users</button>
             <select wire:model.debounce.500ms="gender"
                 class="p-2 px-4 text-gray-700 bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 rounded-xl"
                 name="gender">
@@ -17,6 +18,7 @@
                 name="gender">
                 <option value="">User Filter</option>
                 <option value="1">Inactive since 30 days</option>
+                <option value="2">Have not been paying since 30 days</option>
             </select>
             <select wire:model.debounce.500ms="group_status"
                 class="p-2 px-4 text-gray-700 bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 rounded-xl"

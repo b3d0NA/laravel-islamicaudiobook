@@ -16,12 +16,13 @@ class Users extends Component
     public $paid_status;
     public $filter;
     
-    protected $listeners = ["UserUpdatedSuccesfully" => '$refresh', "UserDeletedSuccessfully" => '$refresh'];
+    protected $listeners = ["UserUpdatedSuccesfully" => '$refresh', "UserDeletedSuccessfully" => '$refresh', 'UserAddedSuccesfully' => '$refresh'];
 
     protected $queryString = ['search', "gender", "group_status", "paid_status", "filter"];
 
     public function getUsersProperty(){
-        return User::when($this->search >= 2 , function ($query){
+        return User::with('payments')
+                    ->when($this->search >= 2 , function ($query){
                         $query->orWhere("name", 'LIKE', '%' . $this->search . '%');
                         $query->orWhere("email", 'LIKE', '%' . $this->search . '%');
                         $query->orWhere("mobile", 'LIKE', '%' . $this->search . '%');
@@ -33,6 +34,14 @@ class Users extends Component
                     ->when($this->filter == 1, function ($query){
                         return $query->whereDate('last_login_at', '<', now()->subDays(30))
                                     ->orWhereNull("last_login_at");
+                    })
+                    ->when($this->filter == 2, function ($query){
+                        return $query->whereHas('payments', function($q){
+                                        $q->when($this->filter == 2, function ($query){
+                                            $query->whereDate('created_at', '>' ,now()->subDays(30));
+                                        });
+                                    })
+                                    ->where('paid_status', 1);
                     })
                     ->when($this->group_status != "", function ($query){
                         return $query->where("group_status", $this->group_status);

@@ -10,8 +10,6 @@ use App\Models\Setting;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 
-use function Ramsey\Uuid\v1;
-
 class HomeController extends Controller
 {
     public function index(){
