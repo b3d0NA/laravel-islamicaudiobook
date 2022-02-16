@@ -10,6 +10,7 @@ class Books extends Component
 {
     use WithPagination;
     public $search;
+    public $filter;
     public $perPage = 20;
 
     
@@ -21,8 +22,8 @@ class Books extends Component
                     $query->orWhere("publication", 'LIKE', '%' . $this->search . '%');
                     return $query;
                 })
-                ->when(auth()->check() && auth()->user()->paid_status == 0, function ($query){
-                    return $query->where("status", 1);
+                ->when($this->filter, function ($query){
+                    return $query->where("status", $this->filter);
                 })
                 ->when(auth()->check() && auth()->user()->paid_status == 1, function ($query){
                     return $query->whereBetween("status", [1,2]);
@@ -32,6 +33,10 @@ class Books extends Component
     }
 
     public function updatedSearch(){
+        $this->resetPage();
+    }
+    
+    public function updatedFilter(){
         $this->resetPage();
     }
 

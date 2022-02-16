@@ -3,6 +3,13 @@
         <input wire:model.debounce.500ms="search" type="search" name="search"
             placeholder="Search by book name, author name"
             class="p-2 rounded-lg w-80 md:w-full focus:ring-2 focus:ring-blue-400 focus:outline-none focus:ring-offset-4">
+        <select wire:model.debounce.500ms="filter"
+            class="p-2 px-4 text-gray-700 bg-gray-50 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2 rounded-xl"
+            name="gender">
+            <option value="">Book Filter</option>
+            <option value="1">Free Books</option>
+            <option value="2">Paid Books</option>
+        </select>
     </div>
     <div class="p-5 mt-5 bg-white rounded-lg books-section">
         <div class="flex flex-wrap items-center justify-center space-x-8 space-y-8 sm:flex-col sm:space-x-0 books">
@@ -56,6 +63,23 @@
                     <p class="px-2 py-3 my-3 text-xs italic font-light normal-case">
                         {{config('app.not_activated_group')}}</p>
                     @else
+                    @if ($book->status == 2 && auth()->user()->paid_status == 0)
+                    @if ($book->short_link)
+                    <a class="flex items-center justify-center w-10/12 px-2 py-2 m-auto mb-3 space-x-2 text-white transition ease-in-out bg-blue-300 rounded-xl hover:bg-blue-500 focus:ring-offset-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        target="_blank" href="{{$book->short_link}}">
+                        <span>Read Short Book</span>
+                        <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                        </svg>
+                    </a>
+                    @endif
+                    <p class="my-3 normal-case p-3">
+                        <a href="{{route('user.payment.index')}}" class="text-blue-500 hover:underline">
+                            Become a paid member
+                        </a> to read full book
+                    </p>
+                    @else
                     <a wire:click="read({{$book->id}})"
                         class="flex items-center justify-center w-10/12 px-2 py-2 m-auto mb-3 space-x-2 text-white transition ease-in-out bg-teal-400 rounded-xl hover:bg-teal-500 focus:ring-offset-2 focus:outline-none focus:ring-2 focus:ring-teal-500"
                         target="_blank" href="{{$book->read_link}}">
@@ -65,6 +89,7 @@
                                 d="M14 5l7 7m0 0l-7 7m7-7H3" />
                         </svg>
                     </a>
+                    @endif
                     @endif
                     @endauth
                     @guest

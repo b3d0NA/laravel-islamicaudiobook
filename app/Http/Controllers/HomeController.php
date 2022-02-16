@@ -9,7 +9,6 @@ use App\Mail\ContactMailer;
 use App\Models\Setting;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
-
 class HomeController extends Controller
 {
     public function index(){
@@ -26,7 +25,7 @@ class HomeController extends Controller
     }
 
     public function editProfile(EditProfileRequest $request){
-        auth()->user()->update($request->validated());
+    auth()->user()->update($request->validated());
         return redirect()
             ->route("user.edit.index")
             ->with("success", "Alhamdulillah! Email updated sucessfully");
