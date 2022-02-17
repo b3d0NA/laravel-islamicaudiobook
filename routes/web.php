@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\SettingsController;
 use App\Http\Controllers\Admin\VirtualLibraryController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\FeaturedBookController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\SettingsPagesController;
 use App\Http\Controllers\UserMessageController;
@@ -45,12 +46,15 @@ Route::middleware(['admin.auth'])->prefix("admin")->group(function () {
     Route::view('change-password', 'admin.change-password')->name("admin.changepwd.index");
     Route::post('change-password', [AdminAuthController::class, 'changePassword'])->name("admin.changepwd");
     Route::get('vlib', [VirtualLibraryController::class, "index"])->name("admin.vlib.index");
+    Route::get('featuredbooks', [FeaturedBookController::class, "index"])->name("admin.fbooks.index");
     Route::view('payments', 'admin.users.payments')->name("admin.users.payments.index");
     Route::view('users', "admin.users.index")->name("admin.users.index");
     Route::get('sendmail', [UserController::class, "index"])->name("admin.users.sendmail.index");
     Route::get('messages', [UserController::class, "messages"])->name("admin.users.messages.index");
     Route::get('messages/{user:id}', [UserController::class, "messagesView"])->name("admin.users.messages.view");
     Route::post('messages/{user:id}', [UserController::class, "storeMessage"])->name("admin.users.messages.store");
+
+
     Route::prefix("settings")->group(function (){
         Route::get('settings', [SettingsController::class, "index"])->name("admin.settings.index");
         Route::get('general', [SettingsController::class, "general"])->name("admin.settings.general.index");
@@ -70,6 +74,8 @@ Route::middleware(['admin.auth'])->prefix("admin")->group(function () {
             Route::post("contact", [SettingsPagesController::class, "contactUpdate"])->name("admin.settings.pages.contact.update");
         });
     });
+
+    
     Route::post('logout', [AdminAuthController::class, "logout"])->name("admin.logout");
 });
 

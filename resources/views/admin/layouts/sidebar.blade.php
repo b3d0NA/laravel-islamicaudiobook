@@ -36,6 +36,17 @@
           <!-- end link -->
 
           <!-- link -->
+          <a href="{{route('admin.fbooks.index')}}"
+              class="mb-3 text-sm font-medium capitalize transition duration-500 ease-in-out hover:text-blue-600 flex">
+              <svg class="mr-2 w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M16 4v12l-4-2-4 2V4M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+              </svg>
+              featured books
+          </a>
+          <!-- end link -->
+
+          <!-- link -->
           <a href="{{route('admin.users.index')}}"
               class="mb-3 text-sm font-medium capitalize transition duration-500 ease-in-out hover:text-blue-600">
               <i class="mr-2 text-xs fas fa-users"></i>

@@ -21,6 +21,11 @@
 @auth
 <x-notices :active-notice='$active_notice' :inactive-notice='$inactive_notice' :paid-notice='$paid_notice' />
 @endauth
+
+
+<x-featured-books />
+
+
 @if (!$maintenance->value)
 <livewire:books />
 @else

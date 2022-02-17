@@ -13,17 +13,17 @@
             <!-- table head -->
             <thead class="text-center bg-gray-50 rounded-xl">
                 <tr>
-                    <th class="py-5 text-sm capitalize font-semibold tracking-wide">No.</th>
-                    <th class="py-5 text-sm capitalize font-semibold tracking-wide text-center">name</th>
-                    <th class="py-5 text-sm capitalize font-semibold tracking-wide text-center">author</th>
-                    <th class="py-5 text-sm capitalize font-semibold tracking-wide text-center">publication</th>
-                    <th class="py-5 text-sm capitalize font-semibold tracking-wide text-center">page number</th>
-                    <th class="py-5 text-sm capitalize font-semibold tracking-wide text-center">cover</th>
-                    <th class="py-5 text-sm capitalize font-semibold tracking-wide text-center">read link</th>
-                    <th class="py-5 text-sm capitalize font-semibold tracking-wide text-center">short link</th>
-                    <th class="py-5 text-sm capitalize font-semibold tracking-wide text-center">read count</th>
-                    <th class="py-5 text-sm capitalize font-semibold tracking-wide text-center">book status</th>
-                    <th class="py-5 text-sm capitalize font-semibold tracking-wide text-center">actions</th>
+                    <th class="py-5 text-sm font-semibold tracking-wide capitalize">No.</th>
+                    <th class="py-5 text-sm font-semibold tracking-wide text-center capitalize">name</th>
+                    <th class="py-5 text-sm font-semibold tracking-wide text-center capitalize">author</th>
+                    <th class="py-5 text-sm font-semibold tracking-wide text-center capitalize">publication</th>
+                    <th class="py-5 text-sm font-semibold tracking-wide text-center capitalize">page number</th>
+                    <th class="py-5 text-sm font-semibold tracking-wide text-center capitalize">cover</th>
+                    <th class="py-5 text-sm font-semibold tracking-wide text-center capitalize">read link</th>
+                    <th class="py-5 text-sm font-semibold tracking-wide text-center capitalize">short link</th>
+                    <th class="py-5 text-sm font-semibold tracking-wide text-center capitalize">read count</th>
+                    <th class="py-5 text-sm font-semibold tracking-wide text-center capitalize">book status</th>
+                    <th class="py-5 text-sm font-semibold tracking-wide text-center capitalize">actions</th>
                 </tr>
             </thead>
             <!-- end table head -->
@@ -50,7 +50,7 @@
                     </td>
                     <td class="p-2 mb-4 text-sm font-normal tracking-wider text-center border-r border-gray-200">
                         <a target="_blank" class="" href="{{$book->cover_link}}">
-                            <img class="aspect-auto max-h-[150px] max-w-[150px] m-auto filter hover:saturate-200 hover:drop-shadow-xl"
+                            <img class="aspect-auto rounded-lg max-h-[150px] max-w-[150px] m-auto filter hover:saturate-200 hover:drop-shadow-xl"
                                 src="{{$book->cover_link}}" alt="{{$book->name}}">
 
                         </a>
