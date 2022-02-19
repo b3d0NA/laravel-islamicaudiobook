@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddShortLinkColumnToBooksTable extends Migration
+class AddLastPaidColumnToUsersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class AddShortLinkColumnToBooksTable extends Migration
      */
     public function up()
     {
-        Schema::table('books', function (Blueprint $table) {
-            $table->string("short_link")->nullable();
+        Schema::table('users', function (Blueprint $table) {
+            $table->date("last_paid")->nullable();
         });
     }
 
@@ -25,8 +25,8 @@ class AddShortLinkColumnToBooksTable extends Migration
      */
     public function down()
     {
-        Schema::table('books', function (Blueprint $table) {
-            $table->dropColumn("short_link");
+        Schema::table('users', function (Blueprint $table) {
+            $table->dropColumn("last_paid");
         });
     }
 }

@@ -50,6 +50,17 @@
                     <h5 class="mb-3 italic text-gray-400 normal-case text-md font-extralight">by {{$book->author}}</h5>
                     @auth
                     @if (auth()->user()->group_status != 1)
+                    @if ($book->status == 2 && auth()->user()->paid_status == 1)
+                    <a wire:click="read({{$book->id}})"
+                        class="flex items-center justify-center w-10/12 px-2 py-2 m-auto mb-3 space-x-2 text-white transition ease-in-out bg-teal-400 rounded-xl hover:bg-teal-500 focus:ring-offset-2 focus:outline-none focus:ring-2 focus:ring-teal-500"
+                        target="_blank" href="{{$book->read_link}}">
+                        <span>Read Full Book</span>
+                        <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                        </svg>
+                    </a>
+                    @endif
                     @if ($book->short_link)
                     <a class="flex items-center justify-center w-10/12 px-2 py-2 m-auto mb-3 space-x-2 text-white transition ease-in-out bg-blue-300 rounded-xl hover:bg-blue-500 focus:ring-offset-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
                         target="_blank" href="{{$book->short_link}}">
@@ -60,25 +71,15 @@
                         </svg>
                     </a>
                     @endif
+                    @if (auth()->user()->survey)
                     <p class="px-2 py-3 my-3 text-xs italic font-light normal-case">
                         {{config('app.not_activated_group')}}</p>
                     @else
-                    @if ($book->status == 2 && auth()->user()->paid_status == 0)
-                    @if ($book->short_link)
-                    <a class="flex items-center justify-center w-10/12 px-2 py-2 m-auto mb-3 space-x-2 text-white transition ease-in-out bg-blue-300 rounded-xl hover:bg-blue-500 focus:ring-offset-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                        target="_blank" href="{{$book->short_link}}">
-                        <span>Read Short Book</span>
-                        <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                        </svg>
-                    </a>
-                    @endif
-                    <p class="my-3 normal-case p-3">
-                        <a href="{{route('user.payment.index')}}" class="text-blue-500 hover:underline">
-                            Become a paid member
-                        </a> to read full book
+                    <p class="px-2 py-3 my-3 text-xs italic font-light normal-case">Please fill the <a
+                            href="{{route('user.survey.index')}}" class="text-blue-500 hover:underline">survey form</a>
+                        first to read this book.
                     </p>
+                    @endif
                     @else
                     <a wire:click="read({{$book->id}})"
                         class="flex items-center justify-center w-10/12 px-2 py-2 m-auto mb-3 space-x-2 text-white transition ease-in-out bg-teal-400 rounded-xl hover:bg-teal-500 focus:ring-offset-2 focus:outline-none focus:ring-2 focus:ring-teal-500"
@@ -90,7 +91,7 @@
                         </svg>
                     </a>
                     @endif
-                    @endif
+
                     @endauth
                     @guest
                     @if ($book->short_link)

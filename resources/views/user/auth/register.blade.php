@@ -1,5 +1,5 @@
 @extends("user.layouts.auth")
-@section("title", "Register || ".config("app.name"))
+@section("title", "Register - ".config("app.name"))
 
 @section("content")
 
@@ -32,28 +32,46 @@
         @endforeach
         <form action="{{route('user.register')}}" method="post" class="flex flex-col space-y-4 ">
             @csrf
-            <input required
-                class="p-2 px-4 text-gray-700 bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 rounded-xl"
-                placeholder="Enter your name" type="text" name="name">
-            <input required
-                class="p-2 px-4 text-gray-700 bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 rounded-xl"
-                placeholder="Enter your email address" type="email" name="email">
-            <input required
-                class="p-2 px-4 text-gray-700 bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 rounded-xl"
-                placeholder="Enter your password" type="password" name="password">
-            <input required
-                class="p-2 px-4 text-gray-700 bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 rounded-xl"
-                placeholder="Enter your mobile number" type="number" name="mobile">
-            <input
-                class="p-2 px-4 text-gray-700 bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 rounded-xl"
-                placeholder="Enter your facebook account link" type="text" name="fb_link">
-            <select required
-                class="p-2 px-4 text-gray-700 bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 rounded-xl"
-                name="gender">
-                <option disabled>Select your gender</option>
-                <option value="0">Male</option>
-                <option value="1">Female</option>
-            </select>
+            <div class="flex flex-col justify-center space-y-2">
+                <label for="name" class="text-gray-600 text-md">Name: </label>
+                <input required
+                    class="p-2 px-4 text-gray-700 bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 rounded-xl"
+                    placeholder="Enter your name" type="text" id="name" name="name">
+            </div>
+            <div class="flex flex-col justify-center space-y-2">
+                <label for="email" class="text-gray-600 text-md">Email Address: </label>
+                <input required
+                    class="p-2 px-4 text-gray-700 bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 rounded-xl"
+                    placeholder="Enter your email address" type="email" id="email" name="email">
+            </div>
+            <div class="flex flex-col justify-center space-y-2">
+                <label for="password" class="text-gray-600 text-md">Password: </label>
+                <input required
+                    class="p-2 px-4 text-gray-700 bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 rounded-xl"
+                    placeholder="Enter your password" type="password" id="password" name="password">
+            </div>
+            <div class="flex flex-col justify-center space-y-2">
+                <label for="mobile" class="text-gray-600 text-md">Mobile number: </label>
+                <input required
+                    class="p-2 px-4 text-gray-700 bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 rounded-xl"
+                    placeholder="Enter your mobile number" type="number" id="mobile" name="mobile">
+            </div>
+            <div class="flex flex-col justify-center space-y-2">
+                <label for="fbLink" class="text-gray-600 text-md">Facebook Account Link: </label>
+                <input
+                    class="p-2 px-4 text-gray-700 bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 rounded-xl"
+                    placeholder="Enter your facebook account link" id="fbLink" type="text" name="fb_link">
+            </div>
+            <div class="flex flex-row items-center space-x-2">
+                <label for="gender" class="text-gray-600 text-md">Gender: </label>
+                <select required
+                    class="p-2 px-4 text-gray-700 bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 rounded-xl"
+                    name="gender" id="gender">
+                    <option disabled>Select your gender</option>
+                    <option value="0">Male</option>
+                    <option value="1">Female</option>
+                </select>
+            </div>
             <button type="submit"
                 class="flex items-center justify-center w-5/12 px-8 py-3 mx-auto space-x-2 text-white bg-blue-400 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:outline-none hover:bg-blue-500 rounded-xl">
                 <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24"

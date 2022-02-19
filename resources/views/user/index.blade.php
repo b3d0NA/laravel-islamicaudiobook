@@ -18,6 +18,17 @@
     </div>
 </div>
 @endguest
+
+@auth
+@if (!auth()->user()->survey)
+<div class="p-3 px-8 my-10 w-fit mx-auto text-white rounded-lg bg-red-500 text-center text-xl">ইন্না লিল্লাহ! আপনি এখনো
+    সার্ভে ফর্ম পূরণ করেন নি। <a href="{{route('user.survey.index')}}" class="text-blue-500 hover:underline">অনুগ্রহ করে
+        প্রশ্নের উত্তর
+        গুলো দিন।</a> ইনশা-আল্লাহ! </div>
+@endif
+@endauth
+
+
 @auth
 <x-notices :active-notice='$active_notice' :inactive-notice='$inactive_notice' :paid-notice='$paid_notice' />
 @endauth

@@ -26,7 +26,7 @@ class UpdateValueColumnTypeOfSettingsTableToString extends Migration
     public function down()
     {
         Schema::table('string', function (Blueprint $table) {
-            //
+            $table->dropColumn("value");
         });
     }
 }

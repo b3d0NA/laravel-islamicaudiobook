@@ -2,10 +2,8 @@
 
 namespace App\Console;
 
-use App\Models\User;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
-use Illuminate\Support\Facades\DB;
 
 class Kernel extends ConsoleKernel
 {
@@ -17,18 +15,11 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->call(function () {
-            $inactivePaidUsers = User::with(['payments' => function ($q){
-                                    $q->whereDate('created_at', '>' ,now()->subDays(30));
-                                }])
-                                ->where('paid_status', 1)
-                                ->get();
-            foreach($inactivePaidUsers as $user){
-                if(!$user->payments->first()){
-                    $user->update(["paid_status" => 0]);
-                }
-            }
-        })->daily();
+        // $schedule->call(function () {
+        //     User::where("paid_status", 1)
+        //         ->whereDate("last_paid", "<", now()->subDays(30))
+        //         ->update(["paid_status" => 0]);
+        // })->everyMinute();
     }
 
     /**
@@ -38,7 +29,7 @@ class Kernel extends ConsoleKernel
      */
     protected function commands()
     {
-        $this->load(__DIR__.'/Commands');
+        $this->load(__DIR__ . '/Commands');
 
         require base_path('routes/console.php');
     }

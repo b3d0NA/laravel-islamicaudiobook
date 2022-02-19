@@ -1,9 +1,10 @@
+@if ($books->first())
 <div class="w-8/12 py-8 mx-auto my-8 border border-gray-200 rounded-xl bg-gradient-to-br from-blue-50 to-teal-50">
     <div class="card-body">
         <div class="mx-auto text-center main">
             <h2 class="py-5 text-2xl font-bold text-gray-600">Featured Books</h2>
             <div class="flex flex-wrap items-center justify-center space-x-8 space-y-8 sm:flex-col sm:space-x-0 books">
-                @foreach ($books as $book)                
+                @foreach ($books as $book)
                 <div
                     class="rounded-2xl book w-[230px] border border-gray-200 overflow-hidden hover:shadow-md transition ease-in-out min-h-[480px]">
                     <div class="rounded-tr-2xl rounded-br-2xl min-h-[300px] w-[230px] overflow-hidden book-image">
@@ -13,8 +14,7 @@
                     <div class="mt-2 text-center book-info">
                         <h2 class="my-3 text-xl font-bold text-gray-700">{{$book->name}}</h2>
                         @if (!$book->expire_time->isPast())
-                        <a 
-                            class="flex items-center justify-center px-2 py-2 m-auto mb-3 space-x-2 text-white transition ease-in-out bg-teal-400 w-fit rounded-xl hover:bg-teal-500 focus:ring-offset-2 focus:outline-none focus:ring-2 focus:ring-teal-500"
+                        <a class="flex items-center justify-center px-2 py-2 m-auto mb-3 space-x-2 text-white transition ease-in-out bg-teal-400 w-fit rounded-xl hover:bg-teal-500 focus:ring-offset-2 focus:outline-none focus:ring-2 focus:ring-teal-500"
                             target="_blank" href="{{$book->read_link}}">
                             <span>Read Book</span>
                             <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -23,7 +23,8 @@
                             </svg>
                         </a>
                         @endif
-                        <p class="my-3 text-xs italic text-gray-500">Ends at: <span class="endsAt">{{$book->expire_time->format('m/d/Y')}}</span></p>
+                        <p class="my-3 text-xs italic text-gray-500">Ends at: <span
+                                class="endsAt">{{$book->expire_time->format('m/d/Y')}}</span></p>
                     </div>
                 </div>
                 @endforeach
@@ -35,10 +36,9 @@
 
 @push('custom-scripts')
 <script>
-    // CountDownTimer('{{$book->expire_time->format('m/d/Y')}}', 'endsAt{{$book->id}}');
-    (function CountDownTimer() {
+(function CountDownTimer() {
     const allELements = document.querySelectorAll(".endsAt");
-    [...allELements].map(function (elem) {
+    [...allELements].map(function(elem) {
         const dt = elem.textContent;
         var end = new Date(dt);
 
@@ -71,6 +71,8 @@
         timer = setInterval(showRemaining, 1000);
     });
 })();
-
 </script>
 @endpush
+
+
+@endif

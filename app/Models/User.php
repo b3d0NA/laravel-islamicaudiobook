@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -26,7 +25,8 @@ class User extends Authenticatable
         'group_status',
         'paid_status',
         'gender',
-        'last_login_at'
+        'last_login_at',
+        'last_paid',
     ];
 
     /**
@@ -39,7 +39,7 @@ class User extends Authenticatable
         'remember_token',
     ];
 
-    protected $dates = ["last_login_at"];
+    protected $dates = ["last_login_at", "last_paid"];
 
     /**
      * The attributes that should be cast.
@@ -50,21 +50,38 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-
-    public function setPasswordAttribute($password){
+    public function setPasswordAttribute($password)
+    {
         $this->attributes['password'] = bcrypt($password);
     }
 
-    public function messages(){
+    public function messages()
+    {
         return $this->hasMany(AdminMessage::class, "user_id");
     }
 
-    public function lastMessage(){
+    public function lastMessage()
+    {
         return $this->messages()->latest()->first();
     }
-    
+
     public function payments()
     {
         return $this->hasMany(UserPayment::class);
+    }
+
+    public function lastPayment()
+    {
+        return $this->payments()->latest()->limit(1);
+    }
+
+    public function survey()
+    {
+        return $this->hasOne(Survey::class);
+    }
+
+    public function isSurveyed()
+    {
+        return $this->survey->exists();
     }
 }

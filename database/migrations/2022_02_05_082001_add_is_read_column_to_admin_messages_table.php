@@ -26,7 +26,7 @@ class AddIsReadColumnToAdminMessagesTable extends Migration
     public function down()
     {
         Schema::table('admin_messages', function (Blueprint $table) {
-            //
+            $table->dropColumn("is_read");
         });
     }
 }

@@ -8,6 +8,7 @@
 </div>
 
 
+<livewire:user-view />
 <livewire:add-users />
 <livewire:user-edit />
 <livewire:user-delete />

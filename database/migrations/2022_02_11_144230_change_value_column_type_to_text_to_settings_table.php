@@ -26,7 +26,7 @@ class ChangeValueColumnTypeToTextToSettingsTable extends Migration
     public function down()
     {
         Schema::table('text_to_settings', function (Blueprint $table) {
-            //
+            $table->dropColumn("value");
         });
     }
 }

@@ -1,13 +1,14 @@
 <?php
 use App\Http\Controllers\Admin\AdminAuthController;
-use App\Http\Controllers\AuthController;
-use App\Http\Controllers\Admin\SettingsController;
-use App\Http\Controllers\Admin\VirtualLibraryController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\SettingsController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\VirtualLibraryController;
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\FeaturedBookController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\SettingsPagesController;
+use App\Http\Controllers\SurveyController;
 use App\Http\Controllers\UserMessageController;
 use App\Http\Controllers\UserPaymentController;
 use Illuminate\Support\Facades\Artisan;
@@ -18,7 +19,7 @@ Route::get("terms", [HomeController::class, "terms"])->name("user.pages.terms");
 Route::get("disclaimers", [HomeController::class, "disclaimers"])->name("user.pages.disclaimers");
 Route::get("contact", [HomeController::class, "contact"])->name("user.pages.contact");
 Route::post("contact", [HomeController::class, "contactSendMail"])->name("user.contact.sendmail");
-Route::middleware("auth")->group(function (){
+Route::middleware("auth")->group(function () {
     Route::get('edit/profile', [HomeController::class, "editProfileIndex"])->name("user.edit.index");
 
     Route::get('messages', [UserMessageController::class, "index"])->name("user.messages.index");
@@ -30,15 +31,18 @@ Route::middleware("auth")->group(function (){
     Route::get('payment', [UserPaymentController::class, "index"])->name("user.payment.index");
     Route::post('payment', [UserPaymentController::class, "store"])->name("user.payment.store");
 
+    Route::get("survey", [SurveyController::class, "index"])->name("user.survey.index");
+    Route::post("survey", [SurveyController::class, "store"])->name("user.survey.store");
+
     Route::post("logout", [AuthController::class, "logout"])->name("user.logout");
 });
 
-Route::middleware("guest")->group(function (){
+Route::middleware("guest")->group(function () {
     Route::view("login", "user.auth.login")->name("user.login.index");
     Route::post("login", [AuthController::class, "login"])->name("user.login");
     Route::view("register", "user.auth.register")->name("user.register.index");
     Route::post("register", [AuthController::class, "register"])->name("user.register");
-    
+
 });
 
 Route::middleware(['admin.auth'])->prefix("admin")->group(function () {
@@ -54,13 +58,12 @@ Route::middleware(['admin.auth'])->prefix("admin")->group(function () {
     Route::get('messages/{user:id}', [UserController::class, "messagesView"])->name("admin.users.messages.view");
     Route::post('messages/{user:id}', [UserController::class, "storeMessage"])->name("admin.users.messages.store");
 
-
-    Route::prefix("settings")->group(function (){
+    Route::prefix("settings")->group(function () {
         Route::get('settings', [SettingsController::class, "index"])->name("admin.settings.index");
         Route::get('general', [SettingsController::class, "general"])->name("admin.settings.general.index");
         Route::post('general', [SettingsController::class, "update"])->name("admin.settings.general.update");
 
-        Route::prefix("pages")->group(function (){
+        Route::prefix("pages")->group(function () {
             Route::get("index", [SettingsPagesController::class, "index"])->name("admin.settings.pages.index");
 
             Route::get("terms", [SettingsPagesController::class, "terms"])->name("admin.settings.pages.terms.index");
@@ -75,16 +78,15 @@ Route::middleware(['admin.auth'])->prefix("admin")->group(function () {
         });
     });
 
-    
     Route::post('logout', [AdminAuthController::class, "logout"])->name("admin.logout");
 });
 
-Route::middleware(['admin.guest'])->prefix("admin")->group(function(){
+Route::middleware(['admin.guest'])->prefix("admin")->group(function () {
     Route::view('login', 'admin.auth.login')->name("admin.login.index");
     Route::post('login', [AdminAuthController::class, "login"])->name("admin.login");
 });
 
-Route::get("artisan", function (){
+Route::get("artisan", function () {
     Artisan::call('migrate --seed');
     Artisan::call("cache:clear");
     Artisan::call('optimize');
@@ -92,5 +94,5 @@ Route::get("artisan", function (){
     Artisan::call('route:clear');
     Artisan::call('view:clear');
     Artisan::call('config:cache');
-    echo"Done Alhamdulillah!";
+    echo "Done Alhamdulillah!";
 });
