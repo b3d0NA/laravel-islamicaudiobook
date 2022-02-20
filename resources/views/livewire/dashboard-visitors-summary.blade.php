@@ -1,14 +1,25 @@
 <div class="flex flex-row col-span-2 p-0 my-10 overflow-hidden card lg:col-span-1 lg:flex-col">
 
     <!-- right -->
-    <div class="w-full lg:w-full lg:mb-5">
+    <div class="w-8/12 lg:w-full lg:mb-5">
 
         <!-- top -->
         <div class="flex flex-row flex-wrap items-center justify-between p-5">
             <h2 class="text-lg font-bold">Visitors Summary</h2>
             <div class="flex flex-row items-center justify-center">
-                <a href="#" class="block py-2 mr-4 text-sm btn">month</a>
-                <a href="#" class="block py-2 text-sm btn-shadow">week</a>
+            <button wire:click="$set('filter', 'today')" @class([
+                "block py-2 mr-4 text-sm btn",
+                    "btn-shadow" => $filter == 'today'
+                ])>today</button>
+                <button wire:click="$set('filter', 'month')" @class([
+                    "block py-2 mr-4 text-sm btn",
+                        "btn-shadow" => $filter == 'month'
+                    ])>month</button>
+                <button wire:click="$set('filter', 'year')" @class([
+                    "block py-2 mr-4 text-sm btn",
+                        "btn-shadow" => $filter == 'year'
+                    ])>year</button>
+
             </div>
         </div>
         <!-- end top -->
@@ -29,6 +40,7 @@ window.addEventListener("DOMContentLoaded", function() {
     Livewire.emit("jsLoaded");
 });
 window.addEventListener('summaryUpdate', response => {
+    chartValue = JSON.parse(response.detail)
     var options = {
     chart: {
     //   height: 280,
@@ -55,12 +67,8 @@ window.addEventListener('summaryUpdate', response => {
     },
     series: [
     {
-        name: "serie1",
-        data: [44, 55, 41, 67, 22, 43, 21, 41, 56, 27, 43]
-    },
-    {
-        name: "serie2",
-        data: [54, 45, 51, 57, 32, 33, 31, 31, 46, 37, 33]
+        name: "Visitors",
+        data: chartValue.values,
     }
     ],
     fill: {
@@ -81,16 +89,14 @@ window.addEventListener('summaryUpdate', response => {
         show: false,
     },
     xaxis: {
-      categories: [1, 2, 3, 4, 5, 6, 6, 7, 8, 9, 10],
-      labels: {
-          show: false,
-      },
+      categories: chartValue.categories,
       axisBorder: {
-        show: false,
+        show: true,
       },
       tooltip: {
           enabled: false,
-      }
+      },
+
     },
 
   };

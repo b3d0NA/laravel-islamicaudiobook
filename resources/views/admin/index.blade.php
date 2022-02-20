@@ -8,8 +8,10 @@
     <!-- General Report -->
     @include('admin.index.generalReport')
     <!-- End General Report -->
+    <livewire:dashboard-visitors-summary />
 </div>
 <livewire:inactive-users />
+<livewire:user-view />
 <livewire:toggle-user-group-status />
 <!-- end content -->
 @endsection

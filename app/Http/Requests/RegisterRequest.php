@@ -30,6 +30,14 @@ class RegisterRequest extends FormRequest
             "mobile" => "required|numeric|unique:users,mobile",
             "fb_link" => "nullable|string",
             "gender" => "required|integer",
+            "agree" => "required",
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            "agree.required" => "Inna Lillah!! You have to agree to our Terms & Conditions",
         ];
     }
 }

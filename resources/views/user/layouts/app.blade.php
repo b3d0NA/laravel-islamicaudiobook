@@ -20,12 +20,15 @@
     @include("user.layouts.header")
     @yield("content")
     <!-- script -->
-    <footer class="bg-gray-50 py-10 mt-5">
-        <div class="flex justify-center items-center space-x-4 sm:flex-col sm:space-y-4">
-            <a href="{{route('user.pages.terms')}}" class="hover:underline text-base text-sky-500">Terms &
+    <footer class="py-10 mt-5 bg-gray-50">
+        <div class="flex items-center justify-center space-x-4 sm:flex-col sm:space-y-4">
+            <a href="{{route('user.pages.terms')}}" class="text-base hover:underline text-sky-500">Terms &
                 Conditions</a>
-            <a href="{{route('user.pages.contact')}}" class="hover:underline text-base text-sky-500">Contact Us</a>
-            <a href="{{route('user.pages.disclaimers')}}" class="hover:underline text-base text-sky-500">Disclaimers</a>
+            <a href="{{route('user.pages.contact')}}" class="text-base hover:underline text-sky-500">Contact Us</a>
+            <a href="{{route('user.pages.disclaimers')}}" class="text-base hover:underline text-sky-500">Disclaimers</a>
+            <div class="visitors">
+                <h2>Total Visits: {{$totalVisits}}</h2>
+            </div>
         </div>
     </footer>
     @livewireScripts

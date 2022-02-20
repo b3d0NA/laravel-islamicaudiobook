@@ -18,7 +18,6 @@ class UserView extends Component
     public $why_cant_buy_book;
     public $monthly_mobile_costs;
     public $occupation;
-    public $monthly_hand_costs;
     public $internet_speed;
     public $is_promised;
 
@@ -34,7 +33,6 @@ class UserView extends Component
         $this->why_cant_buy_book = $user->survey?->why_cant_buy_book;
         $this->monthly_mobile_costs = $user->survey?->monthly_mobile_costs;
         $this->occupation = $user->survey?->occupation;
-        $this->monthly_hand_costs = $user->survey?->monthly_hand_costs;
         $this->internet_speed = $user->survey?->internet_speed;
         $this->is_promised = $user->survey?->is_promised;
         $this->isLoading = false;

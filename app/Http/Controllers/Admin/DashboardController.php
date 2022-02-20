@@ -17,4 +17,9 @@ class DashboardController extends Controller
 
         return view("admin.index", compact("users", "groupActiveUsers", "books", "bookReads"));
     }
+
+    public function visitorIndex(User $user)
+    {
+        return view("admin.visitors");
+    }
 }

@@ -9,53 +9,64 @@ use App\Mail\ContactMailer;
 use App\Models\Setting;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
+
 class HomeController extends Controller
 {
-    public function index(){
+    public function index(Request $request)
+    {
+        auth()->check() ? $request->visitor()->visit(auth()->user()) : $request->visitor()->visit();
         $inactive_notice = Setting::where("key", "inactive_users_notice")->select("key", "value")->first();
         $active_notice = Setting::where("key", "active_users_notice")->select("key", "value")->first();
         $paid_notice = Setting::where("key", "paid_users_notice")->select("key", "value")->first();
         $guest_notice = Setting::where("key", "guests_notice")->select("key", "value")->first();
+
         return view('user.index', compact("inactive_notice", "active_notice", "paid_notice", "guest_notice"));
     }
 
-    public function editProfileIndex(){
+    public function editProfileIndex()
+    {
         $user = auth()->user();
         return view("user.edit", compact("user"));
     }
 
-    public function editProfile(EditProfileRequest $request){
-    auth()->user()->update($request->validated());
+    public function editProfile(EditProfileRequest $request)
+    {
+        auth()->user()->update($request->validated());
         return redirect()
             ->route("user.edit.index")
             ->with("success", "Alhamdulillah! Email updated sucessfully");
     }
-    public function changePassword(UserChangePasswordRequest $request){
+    public function changePassword(UserChangePasswordRequest $request)
+    {
         auth()->user()->update(["password" => $request->new_password]);
         return redirect()
             ->route("user.edit.index")
             ->with("success", "Alhamdulillah! Password changed sucessfully");
     }
 
-    public function terms(){
+    public function terms()
+    {
         $terms = Setting::where("key", "terms_content")->first()->value;
         return view("user.terms", compact("terms"));
     }
 
-    public function disclaimers(){
+    public function disclaimers()
+    {
         $disclaimer = Setting::where("key", "disclaimer_content")->first()->value;
         return view("user.disclaimers", compact("disclaimer"));
     }
 
-    public function contact(){
+    public function contact()
+    {
         return view("user.contact");
     }
 
-    public function contactSendMail(ContactRequest $request){
+    public function contactSendMail(ContactRequest $request)
+    {
         $mailTo = Setting::where('key', "contact_email")->first()->value;
         Mail::to($mailTo)
             ->send(new ContactMailer($request->name, $request->email, $request->subject, $request->message));
         return redirect()->route("user.pages.contact")
-                ->with("success", "Alhamdulillah! Admin got your message. Will response ASAP");
+            ->with("success", "Alhamdulillah! Admin got your message. Will response ASAP");
     }
 }

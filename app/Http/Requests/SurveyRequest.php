@@ -27,7 +27,6 @@ class SurveyRequest extends FormRequest
             "why_cant_buy_book" => "required",
             "monthly_mobile_costs" => "required",
             "occupation" => "required",
-            "monthly_hand_costs" => "required",
             "internet_speed" => "required",
             "is_promised" => "required",
         ];
@@ -39,7 +38,6 @@ class SurveyRequest extends FormRequest
             'why_cant_buy_book.required' => 'ইন্না লিল্লাহ! আপনাকে আপনি কেনো বই কিনতে পারেন না তার উত্তর দিতে হবে ',
             'monthly_mobile_costs.required' => 'ইন্না লিল্লাহ! আপনার মাসিক মোবাইল খরচ আমাদের জানাতে হবে ',
             'occupation.required' => 'আপনার পেশা জানান',
-            'monthly_hand_costs.required' => 'আপনার হাত খরচ কতো তার উত্তর দিন',
             'internet_speed.required' => 'আপনার ইন্টারনেট স্পিড জানানো খুবই গুরুত্বপূর্ণ ',
             'is_promised.required' => 'ইন্না লিল্লাহ! আপনি কি আমাদের ওয়াদা করবেন না? ',
         ];

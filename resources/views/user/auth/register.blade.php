@@ -72,6 +72,12 @@
                     <option value="1">Female</option>
                 </select>
             </div>
+            <div class="flex flex-row items-center space-x-2">
+                <input class="p-2 px-4 text-gray-500 bg-gray-50 focus:outline-none" type="checkbox" id="agree"
+                    name="agree">
+                <label class="text-lg text-gray-700" for="agree">I agree to the <a href="{{route('user.pages.terms')}}"
+                        class="text-blue-500 hover:underline">Terms & Conditions</a></label>
+            </div>
             <button type="submit"
                 class="flex items-center justify-center w-5/12 px-8 py-3 mx-auto space-x-2 text-white bg-blue-400 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:outline-none hover:bg-blue-500 rounded-xl">
                 <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24"

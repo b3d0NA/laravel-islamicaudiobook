@@ -30,10 +30,9 @@
                         <input wire:model.defer="mobile" type="text" disabled placeholder="Mobile"
                             class="w-full px-3 py-3 bg-gray-100 rounded-xl focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2"
                             id="mobile">
-                        <label for="fb_link" class="text-gray-600 font-light text-sm">FB: </label>
-                        <input wire:model.defer="fb_link" type="text" disabled placeholder="Facebook Link"
-                            class="w-full px-3 py-3 bg-gray-100 rounded-xl focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2"
-                            id="fb_link">
+                        <span class="text-gray-600 font-light text-sm">FB: </span>
+                        <a class="w-full text-blue-500 hover:underline focus:ring-teal-500 focus:ring-offset-2"
+                            href="{{ $fb_link }}">{{ $fb_link }}</a>
                     </div>
                     <div class="row flex space-x-4 items-center my-5">
                         <div class="flex w-6/12 flex-col justify-center space-y-2">
@@ -45,6 +44,14 @@
                                 name="why_cant_buy_book"></textarea>
                         </div>
                         <div class="flex flex-col justify-center w-6/12 space-y-2">
+                            <div class="">
+                                <label for="gender" class="text-gray-600 font-light text-sm">Gender: </label>
+                                <select wire:model.defer="gender" disabled class=" p-2 px-4 block text-gray-700 bg-gray-100 focus:outline-none focus:ring-2
+                        focus:ring-blue-500 focus:ring-offset-2 rounded-xl" id="gender">
+                                    <option @if($gender==0) selected @endif value="0">Male</option>
+                                    <option @if($gender==1) selected @endif value="1">Female</option>
+                                </select>
+                            </div>
                             <div class="flex flex-col justify-center space-y-2">
                                 <label for="monthlyMobileCosts" class="text-gray-600 text-lg">আপনার মাসিক মোবাইল খরচ
                                     কতো?
@@ -55,13 +62,6 @@
                                     name="monthly_mobile_costs">
                             </div>
                             <div class="flex flex-col justify-center space-y-2">
-                                <label for="monthlyHandCosts" class="text-gray-600 text-lg">আপনার মাসিক হাত খরচ কতো?
-                                </label>
-                                <input disabled wire:model="monthly_hand_costs"
-                                    class="p-2 px-4 text-gray-700 bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 rounded-xl"
-                                    placeholder="উত্তর দিন" type="text" id="monthlyHandCosts" name="monthly_hand_costs">
-                            </div>
-                            <div class="flex flex-col justify-center space-y-2">
                                 <label for="occupation" class="text-gray-600 text-lg">আপনার পেশা? </label>
                                 <input disabled wire:model="occupation"
                                     class="p-2 px-4 text-gray-700 bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 rounded-xl"
@@ -70,23 +70,16 @@
                         </div>
                     </div>
                     <div class="row flex space-x-4 items-center">
-                        <div class="w-4/12">
-                            <label for="gender" class="text-gray-600 font-light text-sm">Gender: </label>
-                            <select wire:model.defer="gender" disabled class=" p-2 px-4 block text-gray-700 bg-gray-100 focus:outline-none focus:ring-2
-                        focus:ring-blue-500 focus:ring-offset-2 rounded-xl" id="gender">
-                                <option @if($gender==0) selected @endif value="0">Male</option>
-                                <option @if($gender==1) selected @endif value="1">Female</option>
-                            </select>
-                        </div>
 
-                        <div class="flex flex-col w-4/12 justify-center space-y-2">
+
+                        <div class="flex flex-col w-6/12 justify-center space-y-2">
                             <label for="internet_speed" class="text-gray-600 text-lg">আপনার ইন্টারনেট স্পিড কেমন?
                             </label>
                             <input disabled wire:model="internet_speed"
                                 class="p-2 px-4 text-gray-700 bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 rounded-xl"
                                 placeholder="উত্তর দিন" type="text" id="internet_speed">
                         </div>
-                        <div class="flex flex-col w-4/12 justify-center space-y-2">
+                        <div class="flex flex-col w-6/12 justify-center space-y-2">
                             <label for="monthlyHandCosts" class="text-gray-600 text-lg">আপনি কি ওয়াদা দিচ্ছেন যে আপনি
                                 বইগুলো কারো
                                 সাথে শেয়ার করবেন না? </label>

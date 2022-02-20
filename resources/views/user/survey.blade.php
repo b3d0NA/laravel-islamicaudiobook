@@ -44,13 +44,6 @@
                     placeholder="উত্তর দিন" type="text" id="occupation" value="{{old('occupation')}}" name="occupation">
             </div>
             <div class="flex flex-col justify-center space-y-2">
-                <label for="monthlyHandCosts" class="text-gray-600 text-lg">আপনার মাসিক হাত খরচ কতো? </label>
-                <input required
-                    class="p-2 px-4 text-gray-700 bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 rounded-xl"
-                    placeholder="উত্তর দিন" type="text" id="monthlyHandCosts" value="{{old('monthly_hand_costs')}}"
-                    name="monthly_hand_costs">
-            </div>
-            <div class="flex flex-col justify-center space-y-2">
                 <label class="text-gray-600 text-lg">আপনার ইন্টারনেট স্পিড কেমন? </label>
                 <p class="mb-3">যেহেতু আপনাকে বইটি গুগল ড্রাইভ এর মাধ্যমে পড়তে হবে তাই আপনার একটি সচল ইন্টারনেট কানেকশন
                     প্রয়োজন হবে।

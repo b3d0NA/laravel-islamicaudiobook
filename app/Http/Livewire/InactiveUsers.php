@@ -9,18 +9,24 @@ use Livewire\WithPagination;
 class InactiveUsers extends Component
 {
     use WithPagination;
-    
+
     public $group_status;
-    
+
     protected $listeners = ["UserUpdatedSuccesfully" => '$refresh', "UserDeletedSuccessfully" => '$refresh', "UserGroupStatusUpdatedSuccessfully" => '$refresh'];
 
-
-    public function getUsersProperty(){
+    public function getUsersProperty()
+    {
         return User::where("group_status", "0")
-                    ->latest()
-                    ->paginate(10);
+            ->latest()
+            ->paginate(10);
     }
-    public function updateGroupStatus($id){
+    public function view($id)
+    {
+        $this->emit("prepareUserView", User::findOrFail($id));
+    }
+
+    public function updateGroupStatus($id)
+    {
         $this->emit("prepareUserGroupStatus", User::findOrFail($id));
     }
 

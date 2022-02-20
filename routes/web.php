@@ -43,10 +43,15 @@ Route::middleware("guest")->group(function () {
     Route::view("register", "user.auth.register")->name("user.register.index");
     Route::post("register", [AuthController::class, "register"])->name("user.register");
 
+    Route::get("forget-password", [AuthController::class, "forgetPasswordIndex"])->name("user.forgetpwd.index");
+    Route::post("forget-password", [AuthController::class, "forgetPassword"])->name("user.forgetpwd.email");
+    Route::get('reset-password/{token}', [AuthController::class, "passwordResetView"])->name("password.reset");
+    Route::post('reset-password', [AuthController::class, "passwordReset"])->name("password.update");
 });
 
 Route::middleware(['admin.auth'])->prefix("admin")->group(function () {
     Route::get('dashboard', [DashboardController::class, "index"])->name("admin.dashboard");
+    Route::get('visitors', [DashboardController::class, "visitorIndex"])->name("admin.visitor");
     Route::view('change-password', 'admin.change-password')->name("admin.changepwd.index");
     Route::post('change-password', [AdminAuthController::class, 'changePassword'])->name("admin.changepwd");
     Route::get('vlib', [VirtualLibraryController::class, "index"])->name("admin.vlib.index");
