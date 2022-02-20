@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -23,6 +24,11 @@ class Visitors extends Component
     {
         DB::table(config('visitor.table_name'))->where('id', $id)->delete();
         $this->emitSelf("refreshCompo");
+    }
+
+    public function view(?int $id = 0)
+    {
+        $this->emit("prepareUserView", User::findOrFail($id));
     }
 
     public function deleteAll()

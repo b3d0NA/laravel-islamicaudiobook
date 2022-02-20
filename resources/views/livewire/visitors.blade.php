@@ -32,6 +32,9 @@
                         {{$loop->iteration}}
                     </td>
                     <td class="text-sm text-center normal-case border-gray-200">
+                        @if ($visitor->visitor_id)
+
+
                         <button wire:click="view({{$visitor->visitor_id}})"
                                 @class([ "btn text-white focus:ring-2 focus:ring-sky-500 focus:ring-offset-2 bg-stone-300"])>
                                 <svg wire:loading wire:target="view({{$visitor->visitor_id}})"
@@ -46,6 +49,9 @@
                                 </svg>
                                 <span wire:loading.remove wire:target="view({{$visitor->visitor_id}})">View</span>
                             </button>
+                            @else
+                            <p class="italic text-gray-600 text-md">Not registered user</p>
+                            @endif
                     </td>
                     <td class="text-sm text-center normal-case border-gray-200">
                         {{$visitor->url}}
