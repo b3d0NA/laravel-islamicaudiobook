@@ -32,9 +32,9 @@
                 class="relative p-0 m-0 text-gray-500 transition-all duration-300 ease-in-out menu-btn hover:text-gray-900 focus:text-gray-900 focus:outline-none">
                 <i class="text-2xl fad fa-comment-alt"></i>
                 @if (auth("admin")->user()->unreadMessagesCount())
-                <span class="absolute -top-[20px] text-center -right-[10px] w-[25px] h-[25px] bg-red-500 rounded-full text-white text-md font-bold">
-                    {{auth("admin")->user()->unreadMessagesCount()}}
-                </span>
+                    <span class="absolute -top-[20px] text-center -right-[10px] w-[25px] h-[25px] bg-red-500 rounded-full text-white text-md font-bold">
+                        {{auth("admin")->user()->unreadMessagesCount()}}
+                    </span>
                 @endif
             </a>
         </div>

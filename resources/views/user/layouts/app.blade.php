@@ -12,6 +12,9 @@
     <link rel="manifest" href="{{ asset('images/site.webmanifest') }}">
     @livewireStyles
     <link rel="stylesheet" type="text/css" href="{{ asset('css/app.css') }}">
+    <style>
+        [x-cloak] { display: none !important; }
+    </style>
     @stack("custom-styles")
     <title>@yield("title")</title>
 </head>
