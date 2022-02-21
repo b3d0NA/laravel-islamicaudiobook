@@ -13,6 +13,8 @@ class Books extends Component
     public $filter;
     public $perPage = 20;
 
+    protected $queryString = ["search"];
+
     public function getBooksProperty()
     {
         return Book::where("status", "!=", "0")
