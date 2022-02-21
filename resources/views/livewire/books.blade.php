@@ -1,5 +1,5 @@
 <section class="w-11/12 p-5 mx-auto rounded-md main-section">
-    <div class="books-top">
+    <div class="flex items-center space-x-4 books-top md:flex-col md:items-start">
         <input wire:model.debounce.500ms="search" type="search" name="search"
             placeholder="Search by book name, author name"
             class="p-2 rounded-lg w-80 md:w-full focus:ring-2 focus:ring-blue-400 focus:outline-none focus:ring-offset-4" />

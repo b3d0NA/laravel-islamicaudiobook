@@ -6375,6 +6375,10 @@ input:checked + .slider:before {
     flex-direction: column-reverse;
   }
 
+  .md\:items-start {
+    align-items: flex-start;
+  }
+
   .md\:items-center {
     align-items: center;
   }
