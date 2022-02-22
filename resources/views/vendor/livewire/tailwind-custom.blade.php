@@ -5,7 +5,7 @@
     $this->numberOfPaginatorsRendered[$paginator->getPageName()] = 1)
 
     <nav role="navigation" aria-label="Pagination Navigation" class="flex items-center justify-between">
-        <div class="sm:flex sm:justify-between sm:flex-1 hidden" x-init>
+        <div class="md:flex md:justify-between md:w-full md:flex-1 hidden" x-init>
             <span>
                 @if ($paginator->onFirstPage())
                 <span
@@ -39,7 +39,7 @@
             </span>
         </div>
 
-        <div class="sm:hidden flex-1 flex items-center justify-between">
+        <div class="md:hidden flex-1 flex items-center justify-between">
             <div>
                 <p class="text-sm text-gray-700 leading-5">
                     <span>{!! __('Showing') !!}</span>

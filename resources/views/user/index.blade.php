@@ -27,11 +27,12 @@
         গুলো দিন।</a> ইনশা-আল্লাহ! </div>
 
 @elseif (auth()->user()->survey && auth()->user()->group_status != 1)
-<div class="p-3 px-8 mx-auto my-10 text-xl text-center text-white bg-teal-500 rounded-lg w-fit">আলহামদুলিল্লাহ! আমরা আপনার প্রশ্নের
-        উত্তর
-        গুলো পেয়েছি। অনুগ্রহ
-        করে এডমিন একসেপ্ট না করা পর্যন্ত অপেক্ষা করুন অথবা এডমিন কে <a href="{{route('user.messages.index')}}"
-            class="text-blue-500 hover:underline">মেসেজ</a> করুন। ইনশা-আল্লাহ! </div>
+<div class="p-3 px-8 mx-auto my-10 text-xl text-center text-white bg-teal-500 rounded-lg w-fit">আলহামদুলিল্লাহ! আমরা
+    আপনার প্রশ্নের
+    উত্তর
+    গুলো পেয়েছি। অনুগ্রহ
+    করে এডমিন একসেপ্ট না করা পর্যন্ত অপেক্ষা করুন অথবা এডমিন কে <a href="{{route('user.messages.index')}}"
+        class="text-blue-500 hover:underline">মেসেজ</a> করুন। ইনশা-আল্লাহ! </div>
 @endif
 @endauth
 

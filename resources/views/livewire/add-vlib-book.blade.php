@@ -59,8 +59,14 @@
                     @enderror
                     <input wire:model.defer="read_link" type="text" placeholder="Read link"
                         class="w-full px-3 py-3 bg-gray-100 rounded-xl focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2">
+
                     <input wire:model.defer="short_link" type="text" placeholder="Short read link"
                         class="w-full px-3 py-3 bg-gray-100 rounded-xl focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2">
+                    @error("status")
+                    <div class="block p-2 my-1 text-white normal-case bg-red-500 rounded-lg">
+                        {{$message}}
+                    </div>
+                    @enderror
                     <select wire:model.defer="status" required
                         class="w-full px-3 py-3 bg-gray-100 rounded-xl focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2">
                         <option disabled>Select book status</option>
