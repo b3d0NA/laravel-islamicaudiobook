@@ -21,7 +21,7 @@
                 </div>
             </div>
             @forelse ($this->books as $book)
-            <div wire:loading.remove class="rounded-2xl book w-[230px] border border-gray-200 overflow-hidden hover:shadow-md transition ease-in-out h-[470px]">
+            <div wire:loading.remove class="rounded-2xl book w-[230px] border border-gray-200 overflow-hidden hover:shadow-md transition ease-in-out h-fit">
                 <div class="rounded-tr-2xl rounded-br-2xl max-h-[300px] w-[230px] overflow-hidden book-image">
                     <img class="object-contain transition ease-in-out cursor-pointer hover:scale-105 aspect-auto rounded-tr-2xl rounded-br-2xl" src="{{ $book->cover_link }}" alt="{{ $book->name }}" />
                     <div class="book-image-overflow">
@@ -42,12 +42,12 @@
                 </div>
                 <div class="flex flex-col items-center justify-center mt-2 text-center book-info">
                     <div>
-                        <h2 class="text-xl font-bold text-gray-700">
+                        <h2 class="px-2 font-bold text-gray-700 text-md">
                             {{ $book->name }}
                         </h2>
                     </div>
                     <div>
-                        <h5 class="mb-3 italic text-gray-400 normal-case text-md font-extralight">
+                        <h5 class="mb-3 text-sm italic text-gray-400 normal-case font-extralight">
                             by {{ $book->author }}
                         </h5>
                     </div>
