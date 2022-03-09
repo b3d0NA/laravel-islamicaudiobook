@@ -84,7 +84,53 @@ class User extends Authenticatable
 
     public function isSurveyed()
     {
-        return $this->survey->exists();
+        return $this->survey?->exists();
+    }
+
+    public function requests()
+    {
+        return $this->hasMany(BookRequest::class);
+    }
+
+    public function requestedBook(Book $book)
+    {
+        return $this->requests()->where("book_id", $book->id);
+    }
+
+    public function isApprovedRequest(Book $book)
+    {
+        return $this->requestedBook($book)->where('status', 2)->exists();
+    }
+
+    public function isDeclinedRequest(Book $book)
+    {
+        return $this->requestedBook($book)->where('status', 1)->exists();
+    }
+
+    public function isPendingRequest(Book $book)
+    {
+        return $this->requestedBook($book)->whereNull('status')->exists();
+    }
+
+    public function eligibleToRequest(Book $book)
+    {
+        $lastRequest = $this->requests()
+            ->where('updated_at', '>', now()->subDays(30)->endOfDay())
+            ->latest()
+            ->first();
+        if ($lastRequest) {
+            if ($lastRequest->status === 1 || (int) $lastRequest->status === 2) {
+                return true;
+            }
+
+            if ($lastRequest->book()->first()->id == $book->id) {
+                return false;
+            }
+        } else {
+            return true;
+        }
+
+        return false;
     }
 
 }

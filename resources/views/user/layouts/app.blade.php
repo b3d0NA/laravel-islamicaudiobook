@@ -13,7 +13,9 @@
     @livewireStyles
     <link rel="stylesheet" type="text/css" href="{{ asset('css/app.css') }}">
     <style>
-        [x-cloak] { display: none !important; }
+    [x-cloak] {
+        display: none !important;
+    }
     </style>
     @stack("custom-styles")
     <title>@yield("title")</title>
@@ -35,6 +37,8 @@
             </div>
         </div>
     </footer>
+
+    <x-success-notification />
     @livewireScripts
     <script src="{{ asset('js/app.js') }}"></script>
     <!-- end script -->

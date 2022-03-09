@@ -55,6 +55,7 @@ Route::middleware(['admin.auth'])->prefix("admin")->group(function () {
     Route::view('change-password', 'admin.change-password')->name("admin.changepwd.index");
     Route::post('change-password', [AdminAuthController::class, 'changePassword'])->name("admin.changepwd");
     Route::get('vlib', [VirtualLibraryController::class, "index"])->name("admin.vlib.index");
+    Route::view('book-requests', "admin.requests")->name("admin.book.requests.index");
     Route::get('featuredbooks', [FeaturedBookController::class, "index"])->name("admin.fbooks.index");
     Route::view('payments', 'admin.users.payments')->name("admin.users.payments.index");
     Route::view('users', "admin.users.index")->name("admin.users.index");

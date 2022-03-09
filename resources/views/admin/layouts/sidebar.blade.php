@@ -41,6 +41,14 @@
           <!-- end link -->
 
           <!-- link -->
+          <a href="{{route('admin.book.requests.index')}}"
+              class="mb-3 text-sm font-medium capitalize transition duration-500 ease-in-out hover:text-blue-600">
+              <i class="fas fa-sign-language mr-2 text-md"></i>
+              book requests
+          </a>
+          <!-- end link -->
+
+          <!-- link -->
           <a href="{{route('admin.fbooks.index')}}"
               class="flex mb-3 text-sm font-medium capitalize transition duration-500 ease-in-out hover:text-blue-600">
               <svg class="w-5 h-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">

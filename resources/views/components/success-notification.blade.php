@@ -50,6 +50,18 @@
         Livewire.on('UserAddedSuccesfully', (message) => {
             showNotification(message)
         })
+        Livewire.on('CloseRequestModal', (message) => {
+            showNotification(message)
+        })
+        Livewire.on('BookRequestApprovedSuccesfully', (message) => {
+            showNotification(message)
+        })
+        Livewire.on('BookRequestDeclinedSuccessfully', (message) => {
+            showNotification(message)
+        })
+        Livewire.on('BookRequestDeletedSuccessfully', (message) => {
+            showNotification(message)
+        })
         Livewire.on('MailSentUser', (message) => {
             showNotification(message)
         })

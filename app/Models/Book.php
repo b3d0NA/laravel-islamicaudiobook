@@ -16,7 +16,17 @@ class Book extends Model
         'read_link',
         'short_link',
         'read',
-        'status'
+        'status',
     ];
     use HasFactory;
+
+    public function requests()
+    {
+        return $this->hasMany(BookRequest::class);
+    }
+
+    public function userRequests()
+    {
+        return auth()->user()->requests();
+    }
 }

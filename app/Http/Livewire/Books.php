@@ -15,16 +15,38 @@ class Books extends Component
 
     protected $queryString = ["search"];
 
+    protected $listeners = ["RefreshAllBooks" => '$refresh'];
+
+    // public function mount()
+    // {
+    //     $book = Book::with(['requests' => function ($q) {
+    //         $q->where("status", 2)->where("user_id", auth()->id());
+    //     }])
+    //         ->latest()
+    //         ->take(3)
+    //         ->get();
+
+    //     dd($book);
+    // }
+
     public function getBooksProperty()
     {
-        return Book::where("status", "!=", "0")
+        return Book::with(['requests' => function ($q) {
+            $q->when($this->filter === 3, function ($query) {
+                $query->where("status", 2)->where("user_id", auth()->id());
+            });
+        }])
+            ->when($this->filter === 3, function ($query) {
+                $query->whereNotNull("requests");
+            })
+            ->where("status", "!=", "0")
             ->when($this->search >= 2, function ($query) {
-                $query->Where("name", 'LIKE', '%' . $this->search . '%');
+                $query->where("name", 'LIKE', '%' . $this->search . '%');
                 $query->orWhere("author", 'LIKE', '%' . $this->search . '%');
                 $query->orWhere("publication", 'LIKE', '%' . $this->search . '%');
                 return $query;
             })
-            ->when($this->filter, function ($query) {
+            ->when(($this->filter == 1 || $this->filter == 2), function ($query) {
                 return $query->where("status", $this->filter);
             })
             ->when(auth()->check() && auth()->user()->paid_status == 1, function ($query) {

@@ -2,6 +2,7 @@
 
 namespace App\Console;
 
+use App\Models\BookRequest;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
@@ -15,11 +16,15 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->call(function () {
-        //     User::where("paid_status", 1)
-        //         ->whereDate("last_paid", "<", now()->subDays(30))
-        //         ->update(["paid_status" => 0]);
-        // })->everyMinute();
+        $schedule->call(function () {
+            $books = BookRequest::where("status", 2)
+                ->where("updated_at", ">", now()->subMonth());
+            foreach ($books as $book) {
+                if ($book->updated_at->lessThan(now()->subDays($book->expiration))) {
+                    $book->update(["is_expired" => 1]);
+                }
+            }
+        })->everyMinute();
     }
 
     /**

@@ -47,6 +47,9 @@
 
 @if (!$maintenance->value)
 <livewire:books />
+@auth
+<livewire:request-book />
+@endauth
 @else
 <div class="card">
     <div class="card-body">
