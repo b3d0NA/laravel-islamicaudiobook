@@ -125,7 +125,9 @@
                                 class="endsAt">{{auth()->user()->requestedBook($book)->first()->expirationInDate()->format('m/d/Y')}}</span>
                         </p>
                         @else
+
                         @if (auth()->user()->requestedBook($book)->first()->updated_at->lessThan(now()->subDays(30)))
+
                         <button
                             class="flex items-center justify-center w-10/12 px-2 py-2 m-auto mb-3 space-x-2 text-white transition ease-in-out bg-violet-400 rounded-xl hover:bg-violet-500 focus:ring-offset-2 focus:outline-none focus:ring-2 focus:ring-violet-500"
                             @click="$dispatch('open-request-book-modal', '{{$book}}')">
@@ -143,6 +145,7 @@
                         @endif
                         @elseif(auth()->user()->isDeclinedRequest($book))
                         @if (auth()->user()->requestedBook($book)->first()->updated_at->lessThan(now()->subDays(30)))
+
                         <button
                             class="flex items-center justify-center w-10/12 px-2 py-2 m-auto mb-3 space-x-2 text-white transition ease-in-out bg-violet-400 rounded-xl hover:bg-violet-500 focus:ring-offset-2 focus:outline-none focus:ring-2 focus:ring-violet-500"
                             @click="$dispatch('open-request-book-modal', '{{$book}}')">
@@ -168,6 +171,7 @@
                             if you think it's being so late.
                         </p>
                         @else
+                        I am here
                         <button
                             class="flex items-center justify-center w-10/12 px-2 py-2 m-auto mb-3 space-x-2 text-white transition ease-in-out bg-violet-400 rounded-xl hover:bg-violet-500 focus:ring-offset-2 focus:outline-none focus:ring-2 focus:ring-violet-500"
                             @click="$dispatch('open-request-book-modal', '{{$book}}')">

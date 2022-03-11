@@ -94,22 +94,22 @@ class User extends Authenticatable
 
     public function requestedBook(Book $book)
     {
-        return $this->requests()->where("book_id", $book->id);
+        return $this->requests()->where("book_id", $book->id)->latest();
     }
 
     public function isApprovedRequest(Book $book)
     {
-        return $this->requestedBook($book)->where('status', 2)->exists();
+        return $this->requestedBook($book)->first()?->status == 2 ? true : false;
     }
 
     public function isDeclinedRequest(Book $book)
     {
-        return $this->requestedBook($book)->where('status', 1)->exists();
+        return $this->requestedBook($book)->first()?->status == 1 ? true : false;
     }
 
     public function isPendingRequest(Book $book)
     {
-        return $this->requestedBook($book)->whereNull('status')->exists();
+        return $this->requestedBook($book)->first()?->status ? false : true;
     }
 
     public function eligibleToRequest(Book $book)
@@ -119,13 +119,17 @@ class User extends Authenticatable
             ->latest()
             ->first();
         if ($lastRequest) {
+            if ($lastRequest->book()->first()->id == $book->id) {
+                return false;
+            }
+
+            if ($lastRequest->is_expired) {
+                return true;
+            }
             if ($lastRequest->status === 1 || (int) $lastRequest->status === 2) {
                 return true;
             }
 
-            if ($lastRequest->book()->first()->id == $book->id) {
-                return false;
-            }
         } else {
             return true;
         }

@@ -29,6 +29,16 @@
                 <span>{{session('success')}}</span>
             </div>
             @endif
+            <div class="flex flex-row items-center space-x-2">
+                <label for="gender" class="text-gray-600 text-md">Payment Page: </label>
+                <select required
+                    class="p-2 px-4 text-gray-700 bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 rounded-xl"
+                    name="payment_page_status" id="gender">
+                    <option disabled>Select status</option>
+                    <option @if($paymentStatus==0) selected @endif value="0">De Active</option>
+                    <option @if($paymentStatus==1) selected @endif value="1">Active</option>
+                </select>
+            </div>
             <div class="flex items-center mt-4 space-x-4">
                 <label class="text-lg font-base ">Page Content: </label>
                 <div class="w-[90%] h-80">

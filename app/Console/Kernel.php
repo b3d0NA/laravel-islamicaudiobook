@@ -18,7 +18,8 @@ class Kernel extends ConsoleKernel
     {
         $schedule->call(function () {
             $books = BookRequest::where("status", 2)
-                ->where("updated_at", ">", now()->subMonth());
+                ->where("updated_at", ">", now()->subMonth())
+                ->get();
             foreach ($books as $book) {
                 if ($book->updated_at->lessThan(now()->subDays($book->expiration))) {
                     $book->update(["is_expired" => 1]);
