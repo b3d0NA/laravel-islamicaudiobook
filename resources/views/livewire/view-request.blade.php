@@ -88,8 +88,9 @@
                     </div>
                 </div>
                 <div class="bg-gray-50 sm:px-4 py-3 px-6 sm:block flex flex-row-reverse">
-                    <button wire:click.prevent="approve"
-                        class="sm:w-full flex items-center justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-teal-500 sm:text-base font-medium text-white hover:bg-teal-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500 sm:ml-0 ml-3 w-auto text-sm">
+                    <button wire:click.prevent="approve" id="approveRequest"
+                        class="sm:w-full flex items-center justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-teal-500 sm:text-base font-medium text-white hover:bg-teal-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500 sm:ml-0 ml-3 w-auto text-sm disabled:bg-teal-200"
+                        disabled>
                         <svg wire:loading wire:target="approve" class="animate-spin h-5 w-5 text-white"
                             xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                             <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4">
