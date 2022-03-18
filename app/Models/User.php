@@ -109,7 +109,7 @@ class User extends Authenticatable
 
     public function isPendingRequest(Book $book)
     {
-        return $this->requestedBook($book)->first()?->status ? false : true;
+        return ($this->requestedBook($book)->first() && $this->requestedBook($book)->first()->status === null) ? true : false;
     }
 
     public function eligibleToRequest(Book $book)

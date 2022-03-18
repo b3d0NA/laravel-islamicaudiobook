@@ -28,6 +28,7 @@
                 </div>
             </div>
             @forelse ($this->books as $book)
+            {{-- dump(auth()->user()->isPendingRequest($book)) --}}
             <div wire:loading.remove
                 class="rounded-2xl book w-[230px] border border-gray-200 overflow-hidden hover:shadow-md transition ease-in-out h-fit"
                 x-init>
@@ -163,6 +164,7 @@
                             to know why the request had declined.
                         </p>
                         @endif
+
                         @elseif(auth()->user()->isPendingRequest($book))
                         <p class="px-2 py-3 my-3 text-xs italic font-light normal-case">
                             Alhamdulillah! Admin recieved your request.
@@ -171,7 +173,6 @@
                             if you think it's being so late.
                         </p>
                         @else
-                        I am here
                         <button
                             class="flex items-center justify-center w-10/12 px-2 py-2 m-auto mb-3 space-x-2 text-white transition ease-in-out bg-violet-400 rounded-xl hover:bg-violet-500 focus:ring-offset-2 focus:outline-none focus:ring-2 focus:ring-violet-500"
                             @click="$dispatch('open-request-book-modal', '{{$book}}')">
