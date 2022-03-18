@@ -28,7 +28,6 @@
                 </div>
             </div>
             @forelse ($this->books as $book)
-            {{-- dump(auth()->user()->isPendingRequest($book)) --}}
             <div wire:loading.remove
                 class="rounded-2xl book w-[230px] border border-gray-200 overflow-hidden hover:shadow-md transition ease-in-out h-fit"
                 x-init>
